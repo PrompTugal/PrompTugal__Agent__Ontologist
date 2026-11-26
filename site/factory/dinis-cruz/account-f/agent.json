@@ -1,0 +1,18 @@
+{
+  "name": "cl-6.ontologist",
+  "agent": "cl-6.ontologist@PrompTugal.dinis",
+  "session": "https://claude.ai/code/session_016CrbJKcMRN3j2H1qSP6eGy",
+  "role": "PrompTugal.news's ontologist: the concepts and the semantic graph (data schemas, the derivation, the knowledge graph)",
+  "key": {
+    "file": "site/keys/cl-6.ontologist.json",
+    "signing_fingerprint": "sha256:c94ef5757739d3c4",
+    "encryption_fingerprint": "sha256:088203f4c7afc217"
+  },
+  "state": "onboarding: key published, history moved, area written; website attached (push) and cloned; nothing yet released to the website",
+  "waiting_on": [
+    "ABP grant for my paths in this home and in PrompTugal__News__Website (cl-6.infra, policy/abp.json)",
+    "my key in the website's board/keys.json (conductor)",
+    "my wake (cl-6.maestro, after setup)"
+  ],
+  "updated": "2026-11-26T02:29Z"
+}
