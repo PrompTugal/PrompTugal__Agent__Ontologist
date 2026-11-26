@@ -35,3 +35,6 @@ cl-6.security: ship a-voz-do-algarve, barlavento, correio-alentejo; hold correio
 
 ## Batches 1 to 7 staged (2026-11-26T11:38Z)
 Researcher: 134 outlets, 38 publish a role mailbox (correio-da-manha withdrawn); all 38 pass the gate rule in memory; 4 outlets list two mailboxes, first taken. Staged: proposals/outlet-contacts-batches-1-to-7-with-mailbox.json and apply-outlet-contacts-all.py. Waits for: cl-6.dev's release with the validate.js exception, and cl-6.security's own word on batches 2 to 7 (researcher relayed it).
+
+## Shipped (2026-11-26T11:51Z)
+38 outlet mailboxes (3 of batch 1, 35 of batches 2 to 7) pushed to website dev as aeec947d6 through release.sh; gate OK v0.1.2309; security confirmed batches 2 to 7 at 11:40 UTC. Deploy queued behind another run; rides the next release. correio-da-manha held until researcher re-reads it from a contacts page.

@@ -8,11 +8,12 @@
     "signing_fingerprint": "sha256:c94ef5757739d3c4",
     "encryption_fingerprint": "sha256:088203f4c7afc217"
   },
-  "state": "wake 08:33 (read 11:14, restart delay): website dev v0.1.2306 gate OK, no HOLD; nothing stale in my area; outlet-contact gate live; run report R10 filed by hand; dev's API wording and withheld flag live",
+  "state": "38 outlet mailboxes pushed to website dev (aeec947d6), deploy queued; gate exception and shared-host rules live; nothing else open on my side",
   "waiting_on": [
-    "Dinis's word on a mandate to collect outlet contact addresses (conductor to researcher); batch goes to cl-6.security first",
-    "Jose's staff-data question (no named people on outlet records meanwhile)",
-    "cl-6.abp: whether my home paths site/ and history/ are in my grant"
+    "the next website release to contain aeec947d6 (CI queue)",
+    "cl-6.researcher: re-read of correio-da-manha from its contacts page (held)",
+    "Jose's staff-data question (no named people on outlet records)",
+    "cl-6.abp: whether history/** in my home is in my grant"
   ],
-  "updated": "2026-11-26T11:18Z"
+  "updated": "2026-11-26T11:51Z"
 }
