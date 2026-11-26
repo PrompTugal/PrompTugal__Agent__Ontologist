@@ -1,0 +1,109 @@
+diff --git a/newsroom/build/lib/datacheck.mjs b/newsroom/build/lib/datacheck.mjs
+index bc016e798..0ea0e6cf3 100644
+--- a/newsroom/build/lib/datacheck.mjs
++++ b/newsroom/build/lib/datacheck.mjs
+@@ -3,6 +3,7 @@
+ // derivation makes now (newsroom/tools/derive.mjs --check, in memory).
+ import fs from 'node:fs'
+ import path from 'node:path'
++import { checkMediaContact } from './media-contact.mjs'
+ import { R, walk } from './config.mjs'
+ import { loadSchemas, validate } from './schema.mjs'
+ import { derive } from './derive.mjs'
+@@ -142,11 +143,12 @@ export function checkData() {
+     for (const o of s.organisations) {
+         const w = `data/organisations/${o.id}`
+         if (!!o.kind !== !!o.media) { errors.push(`${w}: kind/media mismatch`); continue }
++        if (!o.media && (o.contact || o.media_contact)) { errors.push(...checkMediaContact(o)); continue }
+         if (!o.media) continue
+         for (const r of o.media.places_covered) need(w, r)
+         need(w, o.media.owner?.org)
+         for (const x of o.media.people || []) { for (const r of x.places || []) need(w, r); need(w, x.person) }
+-        if (o.media.contact?.official_email && /^(?:[a-z]+\.[a-z]+|[a-z]\.[a-z]+)@/.test(o.media.contact.official_email)) errors.push(`${w}: official_email is personal`)
++        errors.push(...checkMediaContact(o))   // role mailbox, own domain, https page, read date, no phone (cl-6.security's five conditions)
+         for (const x of o.media.people || []) if (/@|\+?\d{9}/.test(`${x.name} ${x.role} ${x.beat || ''}`)) errors.push(`${w}: contact detail in a person`)
+     }
+     for (const t of s.topics) for (const b of t.broader) need(`data/topics/${t.id}`, b)
+diff --git a/newsroom/build/lib/media-contact.mjs b/newsroom/build/lib/media-contact.mjs
+new file mode 100644
+index 000000000..1a708b25b
+--- /dev/null
++++ b/newsroom/build/lib/media-contact.mjs
+@@ -0,0 +1,43 @@
++// The gate's rule for an outlet's published newsroom contact (cl-6.security's five conditions, 26 Nov 2026; the website's
++// CLAUDE.md "Contacts" rule): only on a media record, only a role mailbox the outlet publishes on its own site, with the
++// page it came from and the date read. No phone number of any kind, no personal-looking address, no foreign domain.
++// Extend ROLE_MAILBOXES only by a reviewed change.
++export const ROLE_MAILBOXES = ['redacao', 'redaccao', 'newsroom', 'news', 'noticias', 'geral', 'info', 'imprensa', 'press', 'editor', 'editorial', 'tips', 'contacto', 'contact']
++
++const SECOND_LEVEL = new Set(['co', 'com', 'org', 'net', 'gov', 'ac', 'edu'])
++
++// The registrable domain of a host: the last two labels, three after a country second level (bbc.co.uk).
++export function registrable(host) {
++    const l = String(host || '').toLowerCase().replace(/\.$/, '').split('.').filter(Boolean)
++    if (l.length < 2) return ''
++    if (l.length >= 3 && l[l.length - 1].length === 2 && SECOND_LEVEL.has(l[l.length - 2])) return l.slice(-3).join('.')
++    return l.slice(-2).join('.')
++}
++
++function parse(u) { try { return new URL(u) } catch { return null } }
++
++// Returns a list of problems (empty when fine) for one organisation record `o`; `now` is a Date.
++export function checkMediaContact(o, now = new Date()) {
++    const w = `data/organisations/${o.id}`, out = []
++    const c = o.media?.contact
++    if (!o.media) { if (o.contact || o.media_contact) out.push(`${w}: a contact belongs on a media record only`); return out }
++    if (!c) return out
++    if (c.official_phone) out.push(`${w}: no phone number in an outlet contact`)
++    const e = c.official_email
++    const site = parse(o.media.website)
++    const page = parse(c.page), src = parse(c.source?.url)
++    if (!e && !c.official_phone) return out
++    if (e) {
++        const m = /^([^@\s]+)@([^@\s]+)$/.exec(e)
++        if (!m) { out.push(`${w}: official_email is not an address`); return out }
++        if (!ROLE_MAILBOXES.includes(m[1].toLowerCase())) out.push(`${w}: official_email is not a role mailbox (${ROLE_MAILBOXES.join(', ')})`)
++        const dom = registrable(m[2])
++        if (!site || registrable(site.hostname) !== dom) out.push(`${w}: official_email is not on the outlet's own domain`)
++        if (!page || page.protocol !== 'https:' || registrable(page.hostname) !== dom) out.push(`${w}: contact page must be https and on the outlet's own domain`)
++        if (!src || src.protocol !== 'https:' || registrable(src.hostname) !== dom) out.push(`${w}: contact source must be https and on the outlet's own domain`)
++        const t = Date.parse(c.source?.read_at)
++        if (!c.source?.read_at || Number.isNaN(t)) out.push(`${w}: contact needs the date it was read`)
++        else if (t > now.getTime() + 24 * 3600 * 1000) out.push(`${w}: contact read date is in the future`)
++    }
++    return out
++}
+diff --git a/newsroom/tests/media-contact.test.mjs b/newsroom/tests/media-contact.test.mjs
+new file mode 100644
+index 000000000..e5768873e
+--- /dev/null
++++ b/newsroom/tests/media-contact.test.mjs
+@@ -0,0 +1,28 @@
++import test from 'node:test'
++import assert from 'node:assert/strict'
++import { checkMediaContact, registrable } from '../build/lib/media-contact.mjs'
++
++const NOW = new Date('2026-11-26T12:00:00Z')
++const ok = () => ({
++    id: 'jornal-x', kind: 'media',
++    media: { website: 'https://www.jornalx.pt/', contact: { page: 'https://www.jornalx.pt/contactos', official_email: 'redacao@jornalx.pt', source: { url: 'https://www.jornalx.pt/contactos', read_at: '2026-11-26', how: 'read the outlet contact page' } } },
++})
++const bad = (o) => checkMediaContact(o, NOW)
++
++test('a role address on the outlet\'s own site passes', () => assert.deepEqual(bad(ok()), []))
++test('a record with no email and only a page passes', () => { const o = ok(); delete o.media.contact.official_email; assert.deepEqual(bad(o), []) })
++test('a personal-looking address fails', () => {
++    for (const a of ['maria.silva@jornalx.pt', 'm.silva@jornalx.pt', 'joao123@jornalx.pt', 'msilva@jornalx.pt']) { const o = ok(); o.media.contact.official_email = a; assert.ok(bad(o).some(x => /role mailbox/.test(x)), a) }
++})
++test('a foreign domain fails', () => { const o = ok(); o.media.contact.official_email = 'redacao@outro.pt'; assert.ok(bad(o).some(x => /own domain/.test(x))) })
++test('a page or source on another domain, or not https, fails', () => {
++    let o = ok(); o.media.contact.page = 'https://outro.pt/c'; assert.ok(bad(o).some(x => /contact page/.test(x)))
++    o = ok(); o.media.contact.source.url = 'http://www.jornalx.pt/contactos'; assert.ok(bad(o).some(x => /contact source/.test(x)))
++})
++test('a phone number of any kind fails', () => { const o = ok(); o.media.contact.official_phone = '+351 21 000 0000'; assert.ok(bad(o).some(x => /phone/.test(x))) })
++test('a missing or future read date fails', () => {
++    let o = ok(); delete o.media.contact.source.read_at; assert.ok(bad(o).some(x => /date it was read/.test(x)))
++    o = ok(); o.media.contact.source.read_at = '2027-01-01'; assert.ok(bad(o).some(x => /future/.test(x)))
++})
++test('a contact on a non-media record fails', () => assert.ok(bad({ id: 'acme', contact: { official_email: 'info@acme.pt' } }).some(x => /media record only/.test(x))))
++test('registrable domains', () => { assert.equal(registrable('www.jornalx.pt'), 'jornalx.pt'); assert.equal(registrable('mail.bbc.co.uk'), 'bbc.co.uk') })
