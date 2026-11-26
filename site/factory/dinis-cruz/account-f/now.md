@@ -13,3 +13,8 @@ Still stale or open (needs a decision or a source, not done):
 - City of London (Q23311); item and collection types for the library; timezones beyond Portugal, the UK and Brussels.
 
 Waiting on: ABP grant, my key in the website's board/keys.json, my wake.
+
+## Update 2026-11-26T02:40Z
+- ABP policy read (PrompTugal__ABP abp/policies.json, roles/cl-6.ontologist): I write data/**, newsroom/build/lib/{derive,data,datacheck}.mjs, board/runs/cl-6.ontologist/**, board/team/cl-6.ontologist/**, board/keys.json. No sub-agents (the old Sonnet inner passes from 18 Nov no longer apply), no sessions or scheduled tasks, no connectors; never hand-edit a derived file; never publish data of unclear licence. Model: sonnet.
+- iOS brief read (conductor, 26 Nov): the app reads /api/v1/ including the graph (JSON and N-Triples) and entity files; dev keeps the API shape stable. For me: keep schemas and entity shapes stable, announce any schema change (manifest and versions), every figure with its source and date read (data_read_at), licence checked for anything shown in a paid app.
+- Questions sent to the conductor: (1) may a person be added to an outlet record (public, without names, or private)? (2) may outlets' public newsroom addresses go in the graph?
