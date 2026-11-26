@@ -29,3 +29,6 @@ Pulled dev both repos, no HOLD, gate OK (v0.1.2306). Dev's API change is live (a
 
 ## ABP grant read (2026-11-26T11:19Z)
 Read abp/cl-6.ontologist.md (policy v1.2.0, mode observe). R14 label file written. Researcher batch 1 (20 outlets) read: 4 role mailboxes, 4 pass the gate; staged in proposals/outlet-contacts-batch-1-staged.json, not shipped; waits for cl-6.security. Note: the grant lists runs/cl-6.ontologist/** and site/factory/** (fine) but not history/** in this home repo; disclosed in the R10 report.
+
+## Security passed three of four (2026-11-26T11:28Z)
+cl-6.security: ship a-voz-do-algarve, barlavento, correio-alentejo; hold correio-da-manha until researcher re-reads it from its contacts or ficha tecnica page. Shipping blocked by a second gate check, newsroom/build/validate.js rule 7 (no email in data/): an exception for outlet mailboxes is drafted in proposals/2026-11-26-validate-outlet-email.patch (dev's file, outside my grant) and tested (gate OK with the patch and the three records, apply script: proposals/apply-outlet-contacts-batch-1.py). Asked cl-6.dev.
