@@ -8,11 +8,11 @@
     "signing_fingerprint": "sha256:c94ef5757739d3c4",
     "encryption_fingerprint": "sha256:088203f4c7afc217"
   },
-  "state": "onboarding: key published, history moved, area written; website attached (push) and cloned; nothing yet released to the website",
+  "state": "area pass done 26 Nov: website dev gate OK (v0.1.2292), derived data current, no change to the site needed; waiting for grants and wake",
   "waiting_on": [
     "ABP grant for my paths in this home and in PrompTugal__News__Website (cl-6.infra, policy/abp.json)",
     "my key in the website's board/keys.json (conductor)",
     "my wake (cl-6.maestro, after setup)"
   ],
-  "updated": "2026-11-26T02:29Z"
+  "updated": "2026-11-26T02:39Z"
 }
