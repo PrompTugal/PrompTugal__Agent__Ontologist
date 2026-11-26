@@ -1,0 +1,572 @@
+{
+  "agent": "ontologist@PrompTugal.dinis",
+  "focus": "data/ schemas and the derivation, the knowledge graph and its links to the team CRM; every fact sourced.",
+  "state": "working (account A)",
+  "updated": "2026-11-20T19:00Z",
+  "done": [
+    "Pass only-websummit-sourced-comes-off, step 2 (conductor.b@, at Dinis's 18:50 word): the inventory data/websummit-only.json, derived by derive.mjs (refs only, counts by kind; schema websummit-only); 239 of 311 company facts, all 285 people, 215 of 248 events, 184 of 269 organisations, 45 of 85 places rest only on websummit.com; 37 of 120 companies left with nothing, 31 of them with their own site on file (22:05)",
+    "Websummit-only pass: facts_left per company (59 with no fact, 37 with nothing); shadow sources (Wikipedia, the EU HaDEA event page) for Web Summit, AWS, the summit event, MEO Arena and FIL and Lisbon, so they stay; event and place schemas take sources (00:21 wake, 12 Nov)",
+    "Websummit-only inventory: evidence captures added (31 of 84 rest only on websummit.com); list-views.schema.json (brought by dev@ for dev.pages@) reviewed and kept (02:21 wake, 12 Nov)",
+    "PitchBook public source (Morningstar SEC exhibit, October 2016): out of the websummit-only inventory; the last item of mine blocking dev@s switch (04:21 wake)",
+    "31 companies back on the site from their own home pages (f-own1); 5 left with nothing; the inventory names per company the fields resting only on websummit.com (company_fields), for dev@ (06:21 wake)",
+    "The 5 companies left with nothing handed to researcher@ for news or registry sources (their sites refuse automated reads; not read around) (08:21 wake)",
+    "Account A session onboarded: new key ontologist-promptugal in board/keys.json (the account B one superseded as -1); notes in board/team/ontologist/sessions/01Kw9UwCqzmCPurcVkEeQXcK/",
+    "The `media` kind for data/organisations/ (outlet: kind, places covered, owner, feeds, publicly named people, contact page, each sourced), with its schema and checks in the gate; A Voz do Algarve is the first outlet; how-to in board/briefs/2026-11-16-media-kind.md",
+    "Reviewed work/researcher: its 76 staged outlets converted to 73 data/organisations media records (3 already exist as other organisations); addresses and numbers left on its branch (the gate allows them only in by-place contacts); 30 places added to data/places (district capitals, Algarve municipalities, Azores, Madeira); converter board/team/ontologist/tools/media-from-researcher.py (20:21 wake)",
+    "22:21 wake: researcher@'s gaps round (Lisboa, Alentejo, Setubal radio, ERC numbers, tech reporters) converted again: 80 outlet records in all; the converter now skips records written by hand or by local@ and records with no website (9 held: diana-fm, radio-amalia-de-setubal, radio-jornal-de-setubal, radio-oxigenio, radio-voz-da-planicie, rtp-antena-1, rtp-antena-3 need a website from researcher@)",
+    "00:21 wake: researcher@'s rounds 3 and 4 (21 outlets from the ERC register, tech press, Setubal radio, JPN) converted: 110 outlet records in all; local@'s records untouched. Held for a website from researcher@: 7 records (diana-fm, radio-amalia-de-setubal, radio-jornal-de-setubal, radio-oxigenio, radio-voz-da-planicie, rtp-antena-1, rtp-antena-3)",
+    "02:21 wake: researcher@'s capital-city radio round (38 ERC-seeded records, checked at the stations' own sites) converted: 138 outlet records written in all; hand-written and local@'s records untouched",
+    "04:21 wake: researcher@'s people-depth round and 41 regional periodicals (ERC sheet) converted: 177 outlet records written in all, 62 changed files; hand-over debrief board/team/ontologist/debriefs/2026-11-17-handover.md",
+    "06:21 wake: researcher@'s masthead reads for 26 regional periodicals converted (33 outlet records updated); researcher@ has reached its ceiling and asked conductor.b@ for the next mandate",
+    "08:21 wake: researcher@'s scripted feed re-check (112 of 122 feeds live, 10 flagged) converted into 10 outlet records; local@ has written no outlet records into data/organisations yet",
+    "10:21 wake: nothing new on work/researcher (merges only); eco, jornal-economico and tvi taken over from the derived listing and given their media records (names and sources kept); converter updated (ADOPT list)",
+    "12:21 wake: nothing new on work/researcher to convert (feed re-check, mastheads, key restore already in); converter made idempotent for adopted listings (a rerun had stripped eco's, jornal-economico's and tvi's listed names and sources: caught at the diff, not released); local@'s Loule desk work noted, no outlet records in data/ yet",
+    "14:21 wake: nothing new from researcher@; local@'s Barlavento and Algarve Primeiro records reviewed and accepted; Postal do Algarve taken over from local@'s Loule file (no people) and A Voz do Algarve given its owner and place:loule; answers in board/team/ontologist/replies/2026-11-17-to-local-jose.md (local@ has no inbox lane); Jose's staff-data question is with Dinis, so no person is added meanwhile",
+    "16:21 wake: nothing new from researcher@ or local@ to bring in; my step of the provenance spec (board/spec-provenance-and-review.md): story-provenance schema (type, five axes, signatures, ladder P0 to P5), claims take testimony and an evidence check, people as authors (common author, story assignee and history.by), all in the gate; brief board/briefs/2026-11-17-provenance-schema.md",
+    "18:21 wake: nothing new from researcher@ or local@; 'who covers which place' is now derived: data/media/by-place.json (184 outlets over 24 places, schema media-by-place, made by derive.mjs from the outlet records, in the gate); the serving and per-place pages are dev@'s and dev.places@'s to take from it",
+    "20:21 wake: nothing new from researcher@ or local@; neighbours of the Algarve's municipalities: Wikidata's borders compared with the conductor's draft, 14 of 16 agree and are in data/places/<id>/place.json (place schema takes neighbours, each with source and date), Tavira and Vila Real de Santo Antonio left for CAOP, Azores namesake clash dropped; brief board/briefs/2026-11-17-neighbours-check.md",
+    "22:21 wake: nothing new from researcher@ or local@; neighbours of all 16 Algarve municipalities now from DGT's CAOP 2025 (official, border length in km), the draft was right for 14, and Tavira and Vila Real de Santo Antonio do share a border; brief board/briefs/2026-11-17-neighbours-check.md updated",
+    "00:21 wake: nothing new from researcher@ (debrief only) or local@; hand-over debrief board/team/ontologist/debriefs/2026-11-18-handover.md",
+    "14:16 and 14:21 wakes: nothing new from researcher@ or local@; conductor.b@'s message (events become part of the graph, Dinis's word in its session, plan in board/briefs/2026-11-18-events-discovery-and-the-graph.md) taken as the plan on the board: the type series and the verb edition_of, event fields (status, series, edition, evidence with readable, details_from), series schema and gate checks, first series web-summit (17 editions); the shape in board/briefs/2026-11-18-events-in-the-ontology.md for data.b@",
+    "15:03 message from conductor.b@ (inner passes, Dinis's word 18 Nov ~15:05; the guidance file board/guidance/2026-11-18-inner-passes-and-security.md is in the repo and on the guidance list): taken as standing guidance. First AppSec post-review, by a Sonnet sub-agent, of my code since 16 Nov: gate code (datacheck, derive, data) clean, data free of contact details and of prompt injection; three gaps in my converter fixed (the record id is now checked before it names a folder, URLs must be plain http(s) with no address, the git ref cannot be an option); a rerun changes no data. From the next wake the five inner passes run as Sonnet sub-agents each wake",
+    "15:15 message from conductor.b@ (library.promptugal.news, Dinis ~15:30; plan board/briefs/2026-11-18-the-library.md in the repo): the catalogue mapped on the ontology we have (item and collection proposed, three edges with inverses) in board/briefs/2026-11-18-library-catalogue-and-the-ontology.md for library.b@ and data.b@; the gate went red on dev from conductor.b@ files and green again; my held commits are on dev (6ea07beeb)",
+    "15:40 message from conductor.b@ (library live, asks for a review of its schema and anchor ids): read the public API graph (169 nodes, 796 edges) and reviewed it: sound (no duplicates or dangling edges, five anchors are ours); six alignments (edges stored both ways, verb under 'type', verb names, days typed as events, topics, agents) in board/briefs/2026-11-18-library-graph-review.md; the library's verb names adopted over my proposal",
+    "15:53 message from conductor.b@ (Dinis, ~16:00: every agent reads the library's requests channel at every wake; guidance file board/guidance/2026-11-18-the-pipeline-standard-and-the-fact-checker.md is in the repo): my file https://library.promptugal.news/api/v1/requests/ontologist-at-promptugal.dinis.json holds REQ-2026-0005 (anchors and Wikidata ids): answered by fixing (the review board/briefs/2026-11-18-library-graph-review.md plus the Wikidata ids Q45, Q597, Q16967344, each read that day; none for the 2026 edition or for organisation:web-summit) and by an optional wikidata field in our place, organisation, series and event schemas, set on portugal, lisbon and series web-summit",
+    "22:19 message from conductor.b@ (Dinis ~22:20, London; guidance board/guidance/2026-11-18-london.md in the repo): the country layer: place fields country (ISO) and timezone, the kind borough, united-kingdom, london (Q84) and the 32 boroughs (each Wikidata id read), portugal and lisbon given PT and Europe/Lisbon; no Portugal check found in the gate code; brief board/briefs/2026-11-18-the-country-layer.md",
+    "00:21 wake: the gate went green again after the AgentiCCells agent-name failures (not mine) and the London country layer is released; nothing new from researcher@ or local@; the library's requests file has nothing open for me",
+    "04:21 wake: nothing new from researcher@ or local@, no open request in the library's channel; hand-over debrief board/team/ontologist/debriefs/2026-11-19-handover.md",
+    "10:53 message from conductor.b@ (startups.b@ needs united-kingdom and london in one place source; guidance board/guidance/2026-11-18-london.md in the repo): the by-place list is dev.places@'s and drives pages, so I made the registry instead: data/site/places-registry.json, derived (101 places with parent, ISO country and timezone; united-kingdom, london and 32 boroughs; the 24 other countries given ISO codes); brief updated; startups.b@ and conductor.b@ told through conductor.b@'s lane",
+    "13:50 message from startups.b@ (the registry against its 36 by-place places): three real differences, all mine and now settled: an aliases field (lisbon has lisboa), Quarteira moved under Loule (my generator had filed it under Portugal), the 16 Algarve municipalities are kind municipality (new kind in the schema, ontology and registry); everything else matched; brief section added",
+    "16:00 message from conductor.b@ (enrol your SSH signing key; the decision is Dinis's, 19 Nov, board/guidance/2026-11-19-signed-commits-paid-search-and-free-embeds.md, in the repo; the tool newsroom/tools/signing-setup.sh read first): enrolled: ontologist-promptugal now carries its ssh public key and this session in board/keys.json (private half only in ~/.sg-send/ssh/), the checkout signs its commits",
+    "17:43 message from conductor.b@ (Dinis ~17:40, the map: Portugal big, London small, the EU small by Brussels; add Brussels and the EU to the registry if missing): added brussels (Q239, BE) and european-union (kind region, seat brussels, Q458; no country code) and a seat field in the place schema and the registry (103 places); its guidance file was not yet in my checkout, said so in the brief; the cameras part is data.b@'s",
+    "18:51 wake (twice-a-day schedule): nothing new from researcher@ or local@, no open request in the library's channel; the 19 November debrief updated with the afternoon's work (registry, aliases, SSH key, Brussels, schedule)",
+    "19:35 message from conductor.b@ (designer@'s shared map ptmap 1.0.0 published, commit 9f5ba1d44; the places registry needs coordinates; spec board/spec-the-shared-map.md is in the repo, line 39 asks me): at ([lon, lat]) and at_source on 68 places (34 from the by-place list, 34 from Wikidata P625), the registry carries at (the EU takes its seat's) for 69 of 103; countries left null on purpose; brief section 19 Nov 20:10",
+    "19:46 message from conductor.b@ (startups.b@ still waiting; add at): all already on dev (589984837, c51707366, e2a97608b); the direct answer written for startups.b@ in board/team/ontologist/replies/2026-11-19-to-startups-b.md and the commit ids sent to conductor.b@ (my earlier note to it did not reach startups.b@: I have no lane to site leads)",
+    "09:50 message from conductor.b@ (the ptmap sites' three asks): at on 6 more places (algarve Q76516549, acores, madeira, almancil, dublin, parque-das-nacoes; 75 of 103 have one; countries and beato-innovation-district not), a top-level index in the registry mapping every id and alias to the place's own id (lisboa resolves as itself), and the third (startups.b@'s differences) already answered 19 Nov; brief section 20 Nov 10:00. startups.b@ switched to the registry (its 56cb493)",
+    "18:51 wake (twice-a-day schedule): nothing new from researcher@ or local@, no open request in the library's channel; hand-over debrief board/team/ontologist/debriefs/2026-11-20-handover.md"
+  ],
+  "next": [
+    "Event kinds for what discovery finds (meetup, conference, festival, market, civic) once data.b@ says which",
+    "More series as discovery names them; past editions kept",
+    "Jose's staff-data answer from Dinis before any person is added to an outlet",
+    "Derive provenance claim counts from claims.json once journalist@ writes the first provenance.json",
+    "Locality layer: km and significance on top of the CAOP neighbours (data.places@); the other districts' municipalities from the same CAOP file when the places exist",
+    "The City of London (Q23311): how to place it (district of London proposed); more cities as named"
+  ],
+  "asks": [
+    "Dinis: GAMMA-Ray has rated companies that are not in our company map (Noxus, OutSystems, Talkdesk, Codacy, Automaise, ByTheLaw, Visor.ai, Granter, Spinnable, Ethiack, Pebl, Student Property Network, Buzz Messaging): should they join it, so their pages carry their cards? Noxus first, as conductor@ asked.",
+    "Dinis: to make the translations (your 19:25 brief: events first, then articles and company pages) I need openrouter.ai in my ABP grant (R7: I may send only to dev.send.sgraph.ai) and a line in accountant@'s OpenRouter plan; events are 249 x 20 cultures. Yes, or should another agent (dev@) run the calls into data/translations/?",
+    "Dinis: Wikipedia round 2 waits on accountant@'s budget; is keeping no editor names (counts only) right?",
+    "Dinis: the ABP grant leaves out newsroom/tools/wikipedia.mjs and board/briefs/, which I wrote at your word in my session (ae93221): should dev@ take the tool, or I keep it?",
+    "dev.pages@ (not Dinis): Founders and Funding rows in the company profile (17:40); 'All day' only when all_day, else 'Time to be confirmed' for a null time (21:40)",
+    "Dinis: do you want outlets' public newsroom addresses in the graph? The gate allows an address only in a by-place contacts entry; widening it is for security@ and dev@. Until you say, only each outlet's contact page is carried.",
+    "Dinis: Jose asks that outlets' staff and journalists' names stay private; your guidance says publicly named editors may be listed. Until you answer, the graph adds no new person to an outlet (the records the researcher wrote with names stay, and would come out if you say private)."
+  ],
+  "wakes": [
+    {
+      "started": "2026-11-06T00:00Z",
+      "outcome": "ok",
+      "release": "v0.1.43",
+      "line": "first run: key, the Brazilian delegation, past editions"
+    },
+    {
+      "started": "2026-11-06T01:21Z",
+      "outcome": "ok",
+      "release": "v0.1.61+",
+      "line": "key in board/keys.json; the move's row 2; seven agents in agents.json"
+    },
+    {
+      "started": "2026-11-06T02:21Z",
+      "outcome": "ok",
+      "release": "v0.1.70+",
+      "line": "the flows schema and 1Password's flows"
+    },
+    {
+      "started": "2026-11-06T03:21Z",
+      "outcome": "ok",
+      "release": "v0.1.87+",
+      "line": "the story pipeline's schema and derivation"
+    },
+    {
+      "started": "2026-11-06T04:21Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "the story project's data folder: six schemas and their checks"
+    },
+    {
+      "started": "2026-11-06T05:20Z",
+      "outcome": "ok",
+      "release": "this one's",
+      "line": "Wikipedia round 1, at Dinis's word in session"
+    },
+    {
+      "started": "2026-11-06T05:21Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "schemas for status.json, ROLE.md, schedule.json and budgets.json, in the gate"
+    },
+    {
+      "started": "2026-11-06T06:21Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "1Password's source note corrected (synthetic@'s finding); Airia's flows"
+    },
+    {
+      "started": "2026-11-06T07:21Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "Cloudflare's flow; Cisco Outshift held for a source"
+    },
+    {
+      "started": "2026-11-06T08:21Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "Conscium's flow; Delinea held (gated page)"
+    },
+    {
+      "started": "2026-11-06T09:21Z",
+      "outcome": "ok",
+      "release": "this wake's (10 of 10 today)",
+      "line": "Descope's and Emergence AI's flows"
+    },
+    {
+      "started": "2026-11-06T10:12Z",
+      "outcome": "ok",
+      "release": "this one's",
+      "line": "dotted names in the agent pattern, unblocking dev.data@"
+    },
+    {
+      "started": "2026-11-06T10:21Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "Feedzai's, Mastra's and Primitive's flows"
+    },
+    {
+      "started": "2026-11-06T11:21Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "Replit's and Qase's flows; Polygraf AI held"
+    },
+    {
+      "started": "2026-11-06T12:22Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "Scrut's and Hexamind's flows"
+    },
+    {
+      "started": "2026-11-06T13:22Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "CrowdStrike's and ChatPlace's flows; cnext held"
+    },
+    {
+      "started": "2026-11-06T14:12Z",
+      "outcome": "ok",
+      "release": "this one's",
+      "line": "Algarve Evolution's entities and network, for the 15:00 meeting"
+    },
+    {
+      "started": "2026-11-06T14:22Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "inbox opened and read (12); push blocked on an SG/Send token"
+    },
+    {
+      "started": "2026-11-06T15:21Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "the 88 concepts into data/concepts.json"
+    },
+    {
+      "started": "2026-11-06T16:21Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "executive director named (Dinis's guidance); the library's architecture reviewed"
+    },
+    {
+      "started": "2026-11-06T17:21Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "synthetic@'s findings F12, F13, F24 decided and fixed"
+    },
+    {
+      "started": "2026-11-06T18:21Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "centres of gravity edges; hand-over debrief"
+    },
+    {
+      "started": "2026-11-06T19:21Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "AICEP corrected; past editions 2022 and 2023 figures"
+    },
+    {
+      "started": "2026-11-06T20:21Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "the newsroom world in the ontology"
+    },
+    {
+      "started": "2026-11-06T21:21Z",
+      "outcome": "ok",
+      "release": "this one's",
+      "line": "two flows, Air Apps corrected, final hand-over"
+    },
+    {
+      "started": "2026-11-06T22:45Z",
+      "outcome": "ok",
+      "release": "this one's",
+      "line": "account B: onboarded, new key, notes"
+    },
+    {
+      "started": "2026-11-06T23:21Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "inbox drained; own-site sources for dev.verify@'s first four"
+    },
+    {
+      "started": "2026-11-07T00:22Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "own-site sources, batch 2 (11 companies); Akamai held"
+    },
+    {
+      "started": "2026-11-07T01:22Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "own-site sources, batch 3 (11 companies); Genspark held"
+    },
+    {
+      "started": "2026-11-07T02:21Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "own-site sources, batch 4 (12); daily debrief"
+    },
+    {
+      "started": "2026-11-07T03:21Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "own-site sources, batch 5 (16): the pass is done"
+    },
+    {
+      "started": "2026-11-07T04:21Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "RWS's website found; Whitespace, Eversec, Nisos held"
+    },
+    {
+      "started": "2026-11-07T05:21Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "built_on in the ontology; Replit on Temporal; Temporal's flow; Kiggu held"
+    },
+    {
+      "started": "2026-11-07T06:21Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "Firefox Enterprise's and Melious's flows; TrustScale held"
+    },
+    {
+      "started": "2026-11-07T07:21Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "Exa's, GetVocal's, Keewano's and LaunchDarkly's flows"
+    },
+    {
+      "started": "2026-11-07T08:21Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "Ledger's, JetBrains Air's and LawVu's flows; Manus held"
+    },
+    {
+      "started": "2026-11-07T09:21Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "LEGALFLY's flow; the outreach list's first pass done (28 of 50)"
+    },
+    {
+      "started": "2026-11-07T10:21Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "sells_on verb; AWS Marketplace listings re-checked (10); edges held for the small graph; librarian answered"
+    },
+    {
+      "started": "2026-11-07T11:21Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "ten sells_on edges re-applied after dev@'s small graph"
+    },
+    {
+      "started": "2026-11-07T12:21Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "S9: Invest.Rio, Maravalley, Gol in the graph"
+    },
+    {
+      "started": "2026-11-07T13:21Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "Twilio built_on Temporal; three candidates not taken"
+    },
+    {
+      "started": "2026-11-07T14:21Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "Genspark built_on Twilio; five providers' customer pages scanned"
+    },
+    {
+      "started": "2026-11-07T15:22Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "withdrew_from and sponsors declared for dev.data@; debrief refreshed"
+    },
+    {
+      "started": "2026-11-07T16:21Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "F13: Feedzai's founders and funding, from its own pages"
+    },
+    {
+      "started": "2026-11-07T17:21Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "founders and funding fields in the company schema; Feedzai's set; dev.pages@ asked"
+    },
+    {
+      "started": "2026-11-07T18:21Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "TrustScale's and cnext's flows from rendered pages"
+    },
+    {
+      "started": "2026-11-07T19:21Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "Startup Portugal: the R2WS class of 78, the stand, its own words"
+    },
+    {
+      "started": "2026-11-07T20:22Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "IAPMEI, Portugal Ventures, Turismo de Portugal, Lisboa Municipality in the graph"
+    },
+    {
+      "started": "2026-11-07T21:21Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "attends, sends_delegation_to, funds; all_day for events (F60)"
+    },
+    {
+      "started": "2026-11-07T22:22Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "the Portugal stand as an event"
+    },
+    {
+      "started": "2026-11-07T23:21Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "the day's debrief refreshed; nothing new in"
+    },
+    {
+      "started": "2026-11-08T00:21Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "8 November debrief; Eversec still unconfirmed"
+    },
+    {
+      "started": "2026-11-09T04:21Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "back on; two Night Summit places"
+    },
+    {
+      "started": "2026-11-09T06:24Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "PitchBook Data is PitchBook"
+    },
+    {
+      "started": "2026-11-09T08:22Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "companies against the programme; Temporal and a16z sessions asked of the programme desk"
+    },
+    {
+      "started": "2026-11-09T10:21Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "built_on scan: Prisma-Mastra not taken (internal tools)"
+    },
+    {
+      "started": "2026-11-09T12:26Z",
+      "outcome": "ok",
+      "release": "none (run report only)",
+      "line": "checks rerun: nothing to change"
+    },
+    {
+      "started": "2026-11-09T14:25Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "shows_as for the iOS app's calendar clashes"
+    },
+    {
+      "started": "2026-11-09T16:22Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "shows_as agrees with the apps' rules.json; cases pass"
+    },
+    {
+      "started": "2026-11-09T18:21Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "9 November debrief; nothing new in"
+    },
+    {
+      "started": "2026-11-09T20:21Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "translations: the schema and the check; the calls wait on Dinis"
+    },
+    {
+      "started": "2026-11-09T22:23Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "contributors schema reviewed; translations wait on Dinis"
+    },
+    {
+      "started": "2026-11-10T06:22Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "back on: GAMMA-Ray read at source; gamma_ray as a link on companies"
+    },
+    {
+      "started": "2026-11-10T08:21Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "products as a type: ontology, schema, reader, ten products"
+    },
+    {
+      "started": "2026-11-10T10:21Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "fourteen more products (24 in all)"
+    },
+    {
+      "started": "2026-11-10T12:23Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "coverage gap measured; journalist@ and dev@ told"
+    },
+    {
+      "started": "2026-11-10T14:24Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "products keyed to GAMMA-Ray's cards: Replit Agent"
+    },
+    {
+      "started": "2026-11-10T16:21Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "offers_alternative_to: Descope/Akamai, Prelude/Twilio"
+    },
+    {
+      "started": "2026-11-10T18:22Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "AISLE and GetVocal linked to their cards; Noxus not in our map"
+    },
+    {
+      "started": "2026-11-10T20:21Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "GAMMA-Ray ids checked; dev@'s schema kept; 10 November debrief"
+    },
+    {
+      "started": "2026-11-10T22:23Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "Manus AI linked to its card"
+    },
+    {
+      "started": "2026-11-11T00:21Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "cards checked; product nodes reminded"
+    },
+    {
+      "started": "2026-11-11T02:21Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "products live in the graph; source URL asked"
+    },
+    {
+      "started": "2026-11-11T04:21Z",
+      "outcome": "ok",
+      "release": "run report only",
+      "line": "product sources confirmed; nothing else to do"
+    },
+    {
+      "started": "2026-11-11T06:24Z",
+      "outcome": "ok",
+      "release": "run report only",
+      "line": "nothing new for me; two more rated companies outside our map"
+    },
+    {
+      "started": "2026-11-11T08:21Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "the 11 November debrief; nothing new in"
+    },
+    {
+      "started": "2026-11-11T10:21Z",
+      "outcome": "ok",
+      "release": "run report only",
+      "line": "nothing new"
+    },
+    {
+      "started": "2026-11-11T12:23Z",
+      "outcome": "ok",
+      "release": "run report only",
+      "line": "LEGALFLY's card reaches its page by id; nothing to change"
+    },
+    {
+      "started": "2026-11-11T14:21Z",
+      "outcome": "ok",
+      "release": "run report only",
+      "line": "nothing new"
+    },
+    {
+      "started": "2026-11-11T16:21Z",
+      "outcome": "ok",
+      "release": "this wake's",
+      "line": "Emergence AI linked to its card"
+    },
+    {
+      "started": "2026-11-11T18:21Z",
+      "outcome": "ok",
+      "release": "run report only",
+      "line": "nothing new"
+    }
+  ],
+  "decisions_on_findings": [
+    {
+      "finding": "F24",
+      "decision": "done: 60452f0 (06:21): the track page re-read, a past-edition highlight; the source note no longer names the person",
+      "at": "2026-11-06T17:40Z"
+    },
+    {
+      "finding": "F12",
+      "decision": "done: AICEP corrected again (19:21): its LIS26 appearance page (track Partner) is live, so it is confirmed; only its hosted session page answered 404; '(conferenceSlug lis26)' now out of every source and fact note too (100 files). Startup Portugal's 'no summit page' line is the companies feature's wording (dev@)",
+      "at": "2026-11-06T19:45Z"
+    },
+    {
+      "finding": "F13",
+      "decision": "accept, in part done: AICEP and Startup Portugal (agencies) moved out of the Portuguese startups field this wake; 'stage, founders, stand' for investors is later: no public source for them is held yet (researcher@); 7 November 16:40: Feedzai's founders and funding added from its own pages (stage: none stated)",
+      "at": "2026-11-06T17:40Z"
+    }
+  ],
+  "debrief": "board/team/ontologist/debriefs/2026-11-20-handover.md",
+  "session": "board/team/ontologist/sessions/01Kw9UwBtpQ2smdiLE2DEkEc/notes.md"
+}
