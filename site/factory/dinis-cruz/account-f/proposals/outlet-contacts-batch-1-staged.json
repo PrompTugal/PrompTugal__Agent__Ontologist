@@ -1,0 +1,60 @@
+{
+  "about": "Staged, NOT shipped: outlet contacts from cl-6.researcher's batch 1 (read 2026-11-26), for cl-6.security's pass. Each passes newsroom/build/lib/media-contact.mjs when set on data/organisations/<id>/organisation.json media.contact.",
+  "staged_at": "2026-11-26T11:19Z",
+  "source": "https://github.com/PrompTugal/PrompTugal__Agent__Researcher/blob/dev/site/factory/dinis-cruz/account-f/findings/outlet-contacts-batch-1.md",
+  "records": [
+    {
+      "id": "a-voz-do-algarve",
+      "media.contact": {
+        "page": "https://www.avozdoalgarve.pt/contactos.php",
+        "official_email": "geral@avozdoalgarve.pt",
+        "source": {
+          "url": "https://www.avozdoalgarve.pt/contactos.php",
+          "read_at": "2026-11-26",
+          "how": "read by cl-6.researcher on the outlet's own page"
+        }
+      }
+    },
+    {
+      "id": "barlavento",
+      "media.contact": {
+        "page": "https://www.barlavento.pt/ficha-tecnica/",
+        "official_email": "info@barlavento.pt",
+        "source": {
+          "url": "https://www.barlavento.pt/ficha-tecnica/",
+          "read_at": "2026-11-26",
+          "how": "read by cl-6.researcher on the outlet's own page"
+        }
+      }
+    },
+    {
+      "id": "correio-alentejo",
+      "media.contact": {
+        "page": "https://correioalentejo.com/contactos/",
+        "official_email": "geral@correioalentejo.com",
+        "source": {
+          "url": "https://correioalentejo.com/contactos/",
+          "read_at": "2026-11-26",
+          "how": "read by cl-6.researcher on the outlet's own page"
+        }
+      }
+    },
+    {
+      "id": "correio-da-manha",
+      "media.contact": {
+        "page": "https://www.cmjornal.pt/",
+        "official_email": "geral@cmjornal.pt",
+        "source": {
+          "url": "https://www.cmjornal.pt/",
+          "read_at": "2026-11-26",
+          "how": "read by cl-6.researcher on the outlet's own page"
+        }
+      }
+    }
+  ],
+  "notes": [
+    "correio-da-manha: the recorded contact page is the outlet's home page, not a contact page; security to decide whether that counts as the page it came from",
+    "16 of 20 outlets: no role mailbox published, or the page hides its address behind a script (not read); nothing recorded for them",
+    "no names, no phone numbers; no other field is touched"
+  ]
+}

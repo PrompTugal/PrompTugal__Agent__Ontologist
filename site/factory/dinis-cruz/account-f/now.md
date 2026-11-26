@@ -26,3 +26,6 @@ Waiting on: ABP grant, my key in the website's board/keys.json, my wake.
 
 ## Wake of 26 Nov 08:33 (read 2026-11-26T11:18Z)
 Pulled dev both repos, no HOLD, gate OK (v0.1.2306). Dev's API change is live (about text, withheld flag on person). R10 run report filed: runs/cl-6.ontologist/2026-11-26T02-23-13Z.json (two breaches disclosed). Nothing left to do until a reply arrives.
+
+## ABP grant read (2026-11-26T11:19Z)
+Read abp/cl-6.ontologist.md (policy v1.2.0, mode observe). R14 label file written. Researcher batch 1 (20 outlets) read: 4 role mailboxes, 4 pass the gate; staged in proposals/outlet-contacts-batch-1-staged.json, not shipped; waits for cl-6.security. Note: the grant lists runs/cl-6.ontologist/** and site/factory/** (fine) but not history/** in this home repo; disclosed in the R10 report.
