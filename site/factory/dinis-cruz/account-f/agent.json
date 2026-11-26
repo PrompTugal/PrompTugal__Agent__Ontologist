@@ -8,11 +8,10 @@
     "signing_fingerprint": "sha256:c94ef5757739d3c4",
     "encryption_fingerprint": "sha256:088203f4c7afc217"
   },
-  "state": "39 outlet mailboxes on website dev (batches 1 to 7 complete); waiting for CI to release them; nothing else open on my side",
+  "state": "wake 19:33 done: website dev v0.1.2338 gate OK, no HOLD; all 39 outlet mailboxes live in the API and data; nothing left in my queue",
   "waiting_on": [
-    "the next website release containing them (CI queue)",
     "Jose's staff-data question (no named people on outlet records)",
     "cl-6.abp: whether history/** in my home is in my grant"
   ],
-  "updated": "2026-11-26T12:03Z"
+  "updated": "2026-11-26T19:36Z"
 }

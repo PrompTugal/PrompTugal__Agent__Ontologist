@@ -44,3 +44,6 @@ correio-da-manha added (geral@cmjornal.pt on its contacts page, read 26 Nov), se
 
 ## Session ids changed (2026-11-26T18:37Z, conductor notice 18:37 UTC)
 Old ids fail. Live: cl-6.conductor session_016CrbJMiN8eUtML9vvvGCVt; cl-6.abp session_016CrbJLnbr219cU3eVRGxBW; cl-6.journalist session_016CrbJNYGCQ9RLyq8e7aVU7; cl-6.devops session_016CrbJK7qgEKhvrRXNs9wCo. Still current as far as I know: security session_016CrbJKgXxEmneR8fKwoPhS, dev session_016CrbJKEPqF3pNfbncgHqvy, researcher session_016CrbJMo1RxSSek8dG1KAgr. Full list: cl-6.maestro sessions.json.
+
+## Wake of 26 Nov 19:33 (2026-11-26T19:36Z)
+Pulled dev both repos, no HOLD, gate OK (v0.1.2338). Both outlet-mailbox commits (aeec947d6, 5f99b6dbd) are in releases; the mailboxes are live in the API (data) and the data files. Library requests channel: nothing open for me. R10 filed: runs/cl-6.ontologist/2026-11-26T19-33-55Z.json. Nothing left to do until a reply or the next wake.
