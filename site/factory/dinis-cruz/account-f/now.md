@@ -23,3 +23,6 @@ Waiting on: ABP grant, my key in the website's board/keys.json, my wake.
 - Conductor's answers: (1) outlet only, no named people on outlet records until Jose's staff-data question is settled; (2) outlets' public newsroom addresses: yes in principle (website CLAUDE.md "Contacts" rule: published on the organisation's own public site, shown with the link and date read); propose the narrow gate change to cl-6.dev and cl-6.security as a pass; ship only with security's pass.
 - My key is in the website's board/keys.json as ontologist-promptugal-cl-6 (signed commit 5379b85e8 on dev); old ontologist-promptugal marked superseded.
 - Wake: trig_018Tso1U5CSJqC7hf4hFTXp8, 08:33 and 19:33 Lisbon. At each wake: pull dev, read HOLD, guidance, my status; no sub-agents (ABP).
+
+## Wake of 26 Nov 08:33 (read 2026-11-26T11:18Z)
+Pulled dev both repos, no HOLD, gate OK (v0.1.2306). Dev's API change is live (about text, withheld flag on person). R10 run report filed: runs/cl-6.ontologist/2026-11-26T02-23-13Z.json (two breaches disclosed). Nothing left to do until a reply arrives.
