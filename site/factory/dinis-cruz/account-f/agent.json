@@ -8,12 +8,11 @@
     "signing_fingerprint": "sha256:c94ef5757739d3c4",
     "encryption_fingerprint": "sha256:088203f4c7afc217"
   },
-  "state": "38 outlet mailboxes pushed to website dev (aeec947d6), deploy queued; gate exception and shared-host rules live; nothing else open on my side",
+  "state": "39 outlet mailboxes on website dev (batches 1 to 7 complete); waiting for CI to release them; nothing else open on my side",
   "waiting_on": [
-    "the next website release to contain aeec947d6 (CI queue)",
-    "cl-6.researcher: re-read of correio-da-manha from its contacts page (held)",
+    "the next website release containing them (CI queue)",
     "Jose's staff-data question (no named people on outlet records)",
     "cl-6.abp: whether history/** in my home is in my grant"
   ],
-  "updated": "2026-11-26T11:51Z"
+  "updated": "2026-11-26T12:03Z"
 }

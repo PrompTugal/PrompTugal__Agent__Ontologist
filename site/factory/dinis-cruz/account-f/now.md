@@ -38,3 +38,6 @@ Researcher: 134 outlets, 38 publish a role mailbox (correio-da-manha withdrawn);
 
 ## Shipped (2026-11-26T11:51Z)
 38 outlet mailboxes (3 of batch 1, 35 of batches 2 to 7) pushed to website dev as aeec947d6 through release.sh; gate OK v0.1.2309; security confirmed batches 2 to 7 at 11:40 UTC. Deploy queued behind another run; rides the next release. correio-da-manha held until researcher re-reads it from a contacts page.
+
+## 39th outlet (2026-11-26T12:03Z)
+correio-da-manha added (geral@cmjornal.pt on its contacts page, read 26 Nov), security passed it; pushed to website dev. All 39 role mailboxes of batches 1 to 7 are on dev; waiting only for CI to number a release that contains them.
