@@ -26,10 +26,10 @@ index bc016e798..0ea0e6cf3 100644
      for (const t of s.topics) for (const b of t.broader) need(`data/topics/${t.id}`, b)
 diff --git a/newsroom/build/lib/media-contact.mjs b/newsroom/build/lib/media-contact.mjs
 new file mode 100644
-index 000000000..1a708b25b
+index 000000000..77b273331
 --- /dev/null
 +++ b/newsroom/build/lib/media-contact.mjs
-@@ -0,0 +1,43 @@
+@@ -0,0 +1,47 @@
 +// The gate's rule for an outlet's published newsroom contact (cl-6.security's five conditions, 26 Nov 2026; the website's
 +// CLAUDE.md "Contacts" rule): only on a media record, only a role mailbox the outlet publishes on its own site, with the
 +// page it came from and the date read. No phone number of any kind, no personal-looking address, no foreign domain.
@@ -46,6 +46,9 @@ index 000000000..1a708b25b
 +    return l.slice(-2).join('.')
 +}
 +
++// A phone-like run of digits (7 or more, with spaces, dots, dashes or brackets between): refused in any text of a contact.
++const PHONE_LIKE = /\+?\d[\d\s().-]{6,}\d/
++
 +function parse(u) { try { return new URL(u) } catch { return null } }
 +
 +// Returns a list of problems (empty when fine) for one organisation record `o`; `now` is a Date.
@@ -55,6 +58,7 @@ index 000000000..1a708b25b
 +    if (!o.media) { if (o.contact || o.media_contact) out.push(`${w}: a contact belongs on a media record only`); return out }
 +    if (!c) return out
 +    if (c.official_phone) out.push(`${w}: no phone number in an outlet contact`)
++    for (const [k, v] of [['how', c.source?.how], ['official_email', c.official_email]]) if (typeof v === 'string' && PHONE_LIKE.test(v)) out.push(`${w}: a phone-like number in contact ${k}`)
 +    const e = c.official_email
 +    const site = parse(o.media.website)
 +    const page = parse(c.page), src = parse(c.source?.url)
@@ -75,10 +79,10 @@ index 000000000..1a708b25b
 +}
 diff --git a/newsroom/tests/media-contact.test.mjs b/newsroom/tests/media-contact.test.mjs
 new file mode 100644
-index 000000000..e5768873e
+index 000000000..50458d4b3
 --- /dev/null
 +++ b/newsroom/tests/media-contact.test.mjs
-@@ -0,0 +1,28 @@
+@@ -0,0 +1,34 @@
 +import test from 'node:test'
 +import assert from 'node:assert/strict'
 +import { checkMediaContact, registrable } from '../build/lib/media-contact.mjs'
@@ -107,3 +111,9 @@ index 000000000..e5768873e
 +})
 +test('a contact on a non-media record fails', () => assert.ok(bad({ id: 'acme', contact: { official_email: 'info@acme.pt' } }).some(x => /media record only/.test(x))))
 +test('registrable domains', () => { assert.equal(registrable('www.jornalx.pt'), 'jornalx.pt'); assert.equal(registrable('mail.bbc.co.uk'), 'bbc.co.uk') })
++test('a phone-like number in any text of the contact fails', () => { const o = ok(); o.media.contact.source.how = 'read the page, call 21 000 00 00'; assert.ok(bad(o).some(x => /phone-like/.test(x))) })
++test('com.pt and org.pt are second levels: two outlets under them are not one domain', () => {
++    assert.equal(registrable('x.com.pt'), 'x.com.pt'); assert.notEqual(registrable('x.com.pt'), registrable('y.com.pt')); assert.equal(registrable('www.y.org.pt'), 'y.org.pt')
++    const o = ok(); o.media.website = 'https://x.com.pt/'; o.media.contact = { page: 'https://y.com.pt/c', official_email: 'info@y.com.pt', source: { url: 'https://y.com.pt/c', read_at: '2026-11-26', how: 'read' } }
++    assert.ok(bad(o).some(x => /own domain/.test(x)))
++})

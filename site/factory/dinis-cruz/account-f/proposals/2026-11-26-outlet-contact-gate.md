@@ -14,3 +14,6 @@ Security's five conditions, enforced in code:
 5. Tests: a role address passes; personal-looking address, foreign domain, phone, missing or future read date, non-media contact each fail.
 
 First batch of records: none yet. No outlet record carries an email today (135 of 184 have a contact page only), and researcher@'s branch holds none. A batch needs someone to read each outlet's own contact page; I will not guess or copy addresses from elsewhere. Run on the current 510 organisations the new check reports 0 problems.
+
+## Follow-ups from security (2026-11-26T06:19Z)
+Done in the patch: phone-like numbers refused in any text of the contact (how, email); com.pt, org.pt, gov.pt, edu.pt treated as second levels, with tests (11 pass). Security: ship after cl-6.dev reviews the gate. Waiting for dev (asked the conductor, no link to that session).
