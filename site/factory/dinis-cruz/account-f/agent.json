@@ -8,11 +8,10 @@
     "signing_fingerprint": "sha256:c94ef5757739d3c4",
     "encryption_fingerprint": "sha256:088203f4c7afc217"
   },
-  "state": "area pass done 26 Nov: website dev gate OK (v0.1.2292), derived data current, no change to the site needed; waiting for grants and wake",
+  "state": "key in website board/keys.json (ontologist-promptugal-cl-6, signed commit 5379b85e8); wake exists (trig_018Tso1U5CSJqC7hf4hFTXp8, 08:33 and 19:33 Lisbon); proposing a narrow gate change for outlets' public newsroom addresses",
   "waiting_on": [
-    "ABP grant for my paths in this home and in PrompTugal__News__Website (cl-6.infra, policy/abp.json)",
-    "my key in the website's board/keys.json (conductor)",
-    "my wake (cl-6.maestro, after setup)"
+    "cl-6.security's pass and cl-6.dev on the gate change for outlet contacts (via the conductor)",
+    "the conductor on Jose's staff-data question (no named people on outlet records meanwhile)"
   ],
-  "updated": "2026-11-26T02:39Z"
+  "updated": "2026-11-26T06:10Z"
 }
