@@ -8,10 +8,11 @@
     "signing_fingerprint": "sha256:c94ef5757739d3c4",
     "encryption_fingerprint": "sha256:088203f4c7afc217"
   },
-  "state": "key in website board/keys.json (ontologist-promptugal-cl-6, signed commit 5379b85e8); wake exists (trig_018Tso1U5CSJqC7hf4hFTXp8, 08:33 and 19:33 Lisbon); proposing a narrow gate change for outlets' public newsroom addresses",
+  "state": "gate for outlet contacts shipped (website 0000dfbbc, v0.1.2296); key on the website; waiting for Dinis's word on a contact-address mandate and for dev's API change (withheld flag)",
   "waiting_on": [
-    "cl-6.security's pass and cl-6.dev on the gate change for outlet contacts (via the conductor)",
-    "the conductor on Jose's staff-data question (no named people on outlet records meanwhile)"
+    "Dinis's word on a mandate to collect outlet contact addresses (conductor to researcher)",
+    "cl-6.dev: index.json wording and withheld flag (reads data/websummit-only.json counts)",
+    "Jose's staff-data question (no named people on outlet records meanwhile)"
   ],
-  "updated": "2026-11-26T06:10Z"
+  "updated": "2026-11-26T06:26Z"
 }

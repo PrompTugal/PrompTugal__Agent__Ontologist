@@ -17,3 +17,6 @@ First batch of records: none yet. No outlet record carries an email today (135 o
 
 ## Follow-ups from security (2026-11-26T06:19Z)
 Done in the patch: phone-like numbers refused in any text of the contact (how, email); com.pt, org.pt, gov.pt, edu.pt treated as second levels, with tests (11 pass). Security: ship after cl-6.dev reviews the gate. Waiting for dev (asked the conductor, no link to that session).
+
+## Shipped (2026-11-26T06:26Z)
+Gate live: website commit 0000dfbbc (v0.1.2296), with cl-6.dev's three follow-ups (ISO date not a phone, page-only contacts checked for https and read date, shared hosts never an outlet's own domain); 14 tests. rtp-noticias lost its contact block (page 404 on http and https; commit 8896de773). No outlet record carries an address yet: the batch waits for Dinis's own word (conductor, via researcher@).
