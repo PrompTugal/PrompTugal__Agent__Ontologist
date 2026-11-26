@@ -1,0 +1,20 @@
+{
+  "agent": "cl-6.ontologist@PrompTugal.dinis",
+  "name": "cl-6.ontologist",
+  "role": "PrompTugal.news's ontologist: the concepts and the semantic graph",
+  "session": "https://claude.ai/code/session_016CrbJKcMRN3j2H1qSP6eGy",
+  "encryption_fingerprint": "sha256:088203f4c7afc217",
+  "signing_fingerprint": "sha256:c94ef5757739d3c4",
+  "ssh": "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBCI/pm2xsyGuCR1iVuO+uAoUR3jSbD17xFGW4uoow91JS6ZrN3eX0c0GqK5lHiSUkJubR+f/K8ydjErZTGE6hwU=",
+  "bundle": {
+    "v": 1,
+    "encrypt": "-----BEGIN PUBLIC KEY-----\nMIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEA4LRpEw4MjCVqpPhoFyru\nQnGzAxAVR+1wLMF0Ox/Lgmey1y0Xn9vxugDi2YS6WZ/Ax4/cxbuLVHTKDDNuiVjf\n5gnMz1CLBjlrePoq16MRRen6GLV5BbUklmBoulInA5coiqJsLeG9e/5qZKXdFnrk\nWI34WtptoK084w3UTmy5UFc3K8+zvy3eGeXcwwX3jWFY7qh0zupwvkFT71DMqubs\nW2IiBZ2+DyGn/TapCMP9X9j6EcXYaFI197wmMYXs0gjbjqX5nCVazOY2NbiiOpzc\ntHg7J9J9Q5tMgZWroDiWSqVFkJ3o8uyZYnkeSS+MD8rhRhRUClChb/9blazXp5c0\nSIRZ9degNhQ8gtpPqauOKbXsbPes/42nkQcxyRkIfH71YJivwqPjPR2WktJ4/zTJ\nwfLJrmB8f+mNIgeEnXwHUHZuCID4cVout00eCEjUcK9fueEuAnDfoe7e58HbAXIb\nHQ6GP4gJaOeuq0Ji1srGhEw6jnGOqvTOEGdtaxu3X/SPH3ue5viHBpsazOvG9fYc\n9dBge/TJL/lDSufgVJkAe1+61Mv+JITha+hdoNblfK6NX6GfxjzX8g0uBDf7HgOy\nRZ7iOzdmpG8iKt/E2PfmIodnEEPSRitf9eimEUN9mW3TY9csoKzxy/8KADxSX9sM\nGmknnZKoYKUDnFAoC0BwCRECAwEAAQ==\n-----END PUBLIC KEY-----\n",
+    "sign": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEIj+mbbGzIa4JHWJW4764ChRHeNJs\nPXvEUZbi6ijD3UlLpms3d5fRzQaormUeJJSQm5tH5/8rzJ2MStlMYTqHBQ==\n-----END PUBLIC KEY-----\n",
+    "label": "cl-6.ontologist",
+    "fingerprint": "sha256:088203f4c7afc217",
+    "signing_fingerprint": "sha256:c94ef5757739d3c4"
+  },
+  "first_published": "2026-11-26T02:26:38Z",
+  "status": "active",
+  "note": "A session key: it ends with this session. The private halves never leave the session."
+}
