@@ -32,3 +32,6 @@ Read abp/cl-6.ontologist.md (policy v1.2.0, mode observe). R14 label file writte
 
 ## Security passed three of four (2026-11-26T11:28Z)
 cl-6.security: ship a-voz-do-algarve, barlavento, correio-alentejo; hold correio-da-manha until researcher re-reads it from its contacts or ficha tecnica page. Shipping blocked by a second gate check, newsroom/build/validate.js rule 7 (no email in data/): an exception for outlet mailboxes is drafted in proposals/2026-11-26-validate-outlet-email.patch (dev's file, outside my grant) and tested (gate OK with the patch and the three records, apply script: proposals/apply-outlet-contacts-batch-1.py). Asked cl-6.dev.
+
+## Batches 1 to 7 staged (2026-11-26T11:38Z)
+Researcher: 134 outlets, 38 publish a role mailbox (correio-da-manha withdrawn); all 38 pass the gate rule in memory; 4 outlets list two mailboxes, first taken. Staged: proposals/outlet-contacts-batches-1-to-7-with-mailbox.json and apply-outlet-contacts-all.py. Waits for: cl-6.dev's release with the validate.js exception, and cl-6.security's own word on batches 2 to 7 (researcher relayed it).
