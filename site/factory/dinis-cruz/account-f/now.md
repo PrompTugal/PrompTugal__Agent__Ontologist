@@ -71,3 +71,6 @@ Built news-flow.json per article (website patch proposals/2026-11-27-news-flow-p
 
 ## 27 Nov (2026-11-27T03:50Z)
 Shipped: news-flow.json per article (website 400531d40, byte for byte as passed; live with the next CI release). All three home page data files are now on dev: story-counts-by-place, news-flow-by-date, news-flow. Waiting: tagging by journalist and correspondent (town, region, builds_on); designer builds the map and tree from the files.
+
+## Wake of 27 Nov 08:33 (2026-11-27T08:37Z)
+Pulled dev both repos, no HOLD, gate OK (v0.1.2378). story-counts-by-place, news-flow-by-date and news-flow are live; 18 of 117 articles placed, none with builds_on yet. Library channel: nothing open for me. R10 filed: runs/cl-6.ontologist/2026-11-27T08-33-38Z.json. Nothing left to do until articles are tagged or a reply arrives.

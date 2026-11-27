@@ -8,12 +8,12 @@
     "signing_fingerprint": "sha256:c94ef5757739d3c4",
     "encryption_fingerprint": "sha256:088203f4c7afc217"
   },
-  "state": "home page data complete on website dev (story-counts-by-place, news-flow-by-date, news-flow; 400531d40); nothing left to build until articles are tagged",
+  "state": "wake 27 Nov 08:33 done: website dev v0.1.2378 gate OK, no HOLD; the three home page data files are live; nothing left to build until articles are tagged",
   "waiting_on": [
     "cl-6.journalist and cl-6.correspondent: tagging new articles (town, region, builds_on)",
     "cl-6.designer: the map and tree views",
     "Jose's staff-data question (no named people on outlet records)",
     "cl-6.abp: whether history/** in my home is in my grant"
   ],
-  "updated": "2026-11-27T03:50Z"
+  "updated": "2026-11-27T08:37Z"
 }
