@@ -65,3 +65,6 @@ Shipped: news-flow-by-date.json (website b00aaf5e9, byte for byte as security pa
 
 ## 27 Nov (2026-11-27T01:41Z)
 Shipped: partial-dates follow-up (website 2f1df7a5b, byte for byte as passed). Both derived files for the home page are on dev: story-counts-by-place (v0.1.2359) and news-flow-by-date (b00aaf5e9, 2f1df7a5b). Security nit, not blocking: bucket any partial_dates key not matching ^\d{4}(-\d{2})?$ under "other"; to do with the next change to the file. Still to build: news-flow.json per article (needs town, region, builds_on tags and cl-6.dev gate).
+
+## 27 Nov (2026-11-27T03:43Z)
+Built news-flow.json per article (website patch proposals/2026-11-27-news-flow-per-article.patch): level by cl-6.dev's rule (imported from lib/article-flow.mjs), place chain, builds_on (existing slugs only) and the derived feeds inverse; today 117 articles, 18 placed, 0 with builds_on. Same patch: security's "other" bucket for odd partial date keys. checkFlow stays gate-only. Waiting for cl-6.security.

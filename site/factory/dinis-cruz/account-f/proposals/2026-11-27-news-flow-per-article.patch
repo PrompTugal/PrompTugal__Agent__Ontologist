@@ -1,0 +1,1306 @@
+diff --git a/data/schemas/news-flow.schema.json b/data/schemas/news-flow.schema.json
+new file mode 100644
+index 000000000..c9a4abbe4
+--- /dev/null
++++ b/data/schemas/news-flow.schema.json
+@@ -0,0 +1,42 @@
++{
++  "$schema": "https://json-schema.org/draft/2020-12/schema",
++  "$id": "https://promptugal.news/data/schemas/news-flow.schema.json",
++  "title": "Each article in the flow (data/site/news-flow.json, derived by newsroom/tools/derive.mjs)",
++  "description": "Per article: its level (local, regional, national, europe, unplaced; cl-6.dev's rule), the places from its town or region up to the country, the earlier articles it builds on (existing articles only) and the articles that build on it (feeds). Untagged articles are unplaced, never guessed.",
++  "type": "object",
++  "required": ["levels", "totals", "articles", "derived"],
++  "properties": {
++    "$schema": { "$ref": "common.schema.json#/$defs/schema_link" },
++    "levels": { "type": "array", "items": { "enum": ["local", "regional", "national", "europe", "unplaced"] }, "minItems": 5, "maxItems": 5 },
++    "totals": {
++      "type": "object",
++      "required": ["articles", "placed", "with_builds_on", "feeds_links"],
++      "properties": {
++        "articles": { "type": "integer", "minimum": 0 },
++        "placed": { "type": "integer", "minimum": 0 },
++        "with_builds_on": { "type": "integer", "minimum": 0 },
++        "feeds_links": { "type": "integer", "minimum": 0 }
++      },
++      "additionalProperties": false
++    },
++    "articles": {
++      "type": "object",
++      "additionalProperties": {
++        "type": "object",
++        "required": ["date", "level", "town", "region", "places", "builds_on", "feeds"],
++        "properties": {
++          "date": { "type": ["string", "null"] },
++          "level": { "enum": ["local", "regional", "national", "europe", "unplaced"] },
++          "town": { "type": ["string", "null"] },
++          "region": { "type": ["string", "null"] },
++          "places": { "type": "array", "items": { "type": "string" } },
++          "builds_on": { "type": "array", "items": { "type": "string" } },
++          "feeds": { "type": "array", "items": { "type": "string" } }
++        },
++        "additionalProperties": false
++      }
++    },
++    "derived": { "$ref": "common.schema.json#/$defs/derived" }
++  },
++  "additionalProperties": false
++}
+diff --git a/data/site/news-flow.json b/data/site/news-flow.json
+new file mode 100644
+index 000000000..66e944ee9
+--- /dev/null
++++ b/data/site/news-flow.json
+@@ -0,0 +1,1140 @@
++{
++  "$schema": "../schemas/news-flow.schema.json",
++  "levels": [
++    "local",
++    "regional",
++    "national",
++    "europe",
++    "unplaced"
++  ],
++  "totals": {
++    "articles": 117,
++    "placed": 18,
++    "with_builds_on": 0,
++    "feeds_links": 0
++  },
++  "articles": {
++    "agent-setup-guide": {
++      "date": "2026-11-06",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "ai-act-first-harmonised-standard": {
++      "date": "2026-11-11",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "ai-literacy-bias-data-small-firms-ai-act": {
++      "date": "2026-11-21",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "ai-physiotherapy-portugal-health-service": {
++      "date": "2026-11-17",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "ai-use-in-portugal-2026": {
++      "date": "2026-11-23",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "alcoutim-ai-path-runs-through-the-guadiana": {
++      "date": "2026-11-16",
++      "level": "local",
++      "town": "alcoutim",
++      "region": "algarve",
++      "places": [
++        "alcoutim",
++        "algarve",
++        "portugal"
++      ],
++      "builds_on": [],
++      "feeds": []
++    },
++    "alcoutim-council-in-a-weeding-robot-project": {
++      "date": "2026-11-16",
++      "level": "local",
++      "town": "alcoutim",
++      "region": "algarve",
++      "places": [
++        "alcoutim",
++        "algarve",
++        "portugal"
++      ],
++      "builds_on": [],
++      "feeds": []
++    },
++    "algar-ai-recycling-points-almancil": {
++      "date": "2026-11-15",
++      "level": "local",
++      "town": "loule",
++      "region": "algarve",
++      "places": [
++        "loule",
++        "algarve",
++        "portugal"
++      ],
++      "builds_on": [],
++      "feeds": []
++    },
++    "algarve-farms-become-ai-and-robot-test-beds": {
++      "date": "2026-11-16",
++      "level": "regional",
++      "town": null,
++      "region": "algarve",
++      "places": [
++        "algarve",
++        "portugal"
++      ],
++      "builds_on": [],
++      "feeds": []
++    },
++    "algarve-tourism-ai-funded-pilot-and-agentic-warning": {
++      "date": "2026-11-16",
++      "level": "regional",
++      "town": null,
++      "region": "algarve",
++      "places": [
++        "algarve",
++        "portugal"
++      ],
++      "builds_on": [],
++      "feeds": []
++    },
++    "amalia-and-ania-portugal-ai-plans": {
++      "date": "2026-11-16",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "angelos-communication-graph": {
++      "date": "2026-11-06",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "atm-currency-conversion-portugal-mark-up": {
++      "date": "2026-11-17",
++      "level": "national",
++      "town": null,
++      "region": "portugal",
++      "places": [
++        "portugal"
++      ],
++      "builds_on": [],
++      "feeds": []
++    },
++    "best-number-one-3wx-loule": {
++      "date": "2026-11-14",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "brazil-comes-to-lisbon-intuitivo-heads-to-brazil": {
++      "date": "2026-11-06",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "brazil-last-year-counts": {
++      "date": "2026-11-07",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "brazil-on-the-stages": {
++      "date": "2026-11-06",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "brazil-startup-mission": {
++      "date": "2026-11-06",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "brazils-doors-into-europe": {
++      "date": "2026-11-07",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "brazils-startup-house-in-lisbon": {
++      "date": "2026-11-06",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "breakout-startups-thursday-centre-stage": {
++      "date": "2026-11-11",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "center-for-responsible-ai-money-partners-goals": {
++      "date": "2026-11-16",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "cocus-vila-nova-de-gaia-tech-hubs": {
++      "date": "2026-11-26",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "cost-holds-back-portuguese-firms-from-ai": {
++      "date": "2026-11-26",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "crewai-trust-starts-with-human-review": {
++      "date": "2026-11-23",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "daily-newsletter": {
++      "date": "2026-11-07",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "digital-fairness-act-ai-agents": {
++      "date": "2026-11-11",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "discord-lisbon-engineering-hub": {
++      "date": "2026-11-12",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "driving-to-web-summit": {
++      "date": "2026-11-07",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "eu-election-guidelines-generative-ai": {
++      "date": "2026-11-11",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "eu-quantum-act-and-sovereign-tech-equity-fund": {
++      "date": "2026-11-26",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "europe-ai-help-and-portugal-ai-startups": {
++      "date": "2026-11-06",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "europe-in-pavilion-4": {
++      "date": "2026-11-06",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "europe-startup-funding-81-billion-atomico": {
++      "date": "2026-11-26",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "faro-ai-gathers-around-the-university": {
++      "date": "2026-11-16",
++      "level": "local",
++      "town": "faro",
++      "region": "algarve",
++      "places": [
++        "faro",
++        "algarve",
++        "portugal"
++      ],
++      "builds_on": [],
++      "feeds": []
++    },
++    "five-ai-builders-to-know": {
++      "date": "2026-11-08",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "five-coding-agents-reverts-security-waits": {
++      "date": "2026-11-24",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "following-robotics-at-web-summit": {
++      "date": "2026-11-06",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "from-pitch-to-new-markets": {
++      "date": "2026-11-06",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "gender-in-tech-report-2026": {
++      "date": "2026-11-06",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "getting-around-lisbon-wednesday": {
++      "date": "2026-11-11",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "glovo-restaurant-agents-getvocal": {
++      "date": "2026-11-10",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "gravitee-agent-security-survey": {
++      "date": "2026-11-10",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "health-service-pays-remote-physiotherapy": {
++      "date": "2026-11-19",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "health-startups-by-problem": {
++      "date": "2026-11-08",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "how-agents-avoid-collisions": {
++      "date": "2026-11-06",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "how-the-agents-talk": {
++      "date": "2026-11-06",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "how-the-eu-simplified-the-ai-act": {
++      "date": "2026-11-20",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "humanos-road-2-web-summit-winner": {
++      "date": "2026-11-13",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "humans-and-ai-vicky-wang": {
++      "date": "2026-11-14",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "ibm-sports-tech-challenge": {
++      "date": "2026-11-09",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "intercom-ai-approves-code-changes": {
++      "date": "2026-11-23",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "italy-and-portugal-in-beato": {
++      "date": "2026-11-06",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "know-the-reach-ai-music-video": {
++      "date": "2026-11-16",
++      "level": "local",
++      "town": "loule",
++      "region": "algarve",
++      "places": [
++        "loule",
++        "algarve",
++        "portugal"
++      ],
++      "builds_on": [],
++      "feeds": []
++    },
++    "konecta-lisbon-delivery-centre": {
++      "date": "2026-11-11",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "lagos-ai-community-not-a-cluster": {
++      "date": "2026-11-15",
++      "level": "local",
++      "town": "lagos",
++      "region": "algarve",
++      "places": [
++        "lagos",
++        "algarve",
++        "portugal"
++      ],
++      "builds_on": [],
++      "feeds": []
++    },
++    "lisbon-awards-and-the-algarve-plan": {
++      "date": "2026-11-06",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "lisbon-universities-at-web-summit": {
++      "date": "2026-11-06",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "london-tube-drivers-strikes-dates-and-dispute": {
++      "date": "2026-11-26",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "manus-2-0-agents-own-email-phone-wallet": {
++      "date": "2026-11-11",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "mistakes-we-made": {
++      "date": "2026-11-06",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "monchique-ai-in-the-accounts-not-the-forest": {
++      "date": "2026-11-16",
++      "level": "local",
++      "town": "monchique",
++      "region": "algarve",
++      "places": [
++        "monchique",
++        "algarve",
++        "portugal"
++      ],
++      "builds_on": [],
++      "feeds": []
++    },
++    "neuraspace-coimbra-raises-15-6-million": {
++      "date": "2026-11-16",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "newsroom-status-four-days-out": {
++      "date": "2026-11-05",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "octo-health-launches": {
++      "date": "2026-11-06",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "olhao-the-ai-path-runs-through-the-fish-farm": {
++      "date": "2026-11-16",
++      "level": "local",
++      "town": "olhao",
++      "region": "algarve",
++      "places": [
++        "olhao",
++        "algarve",
++        "portugal"
++      ],
++      "builds_on": [],
++      "feeds": []
++    },
++    "one-door": {
++      "date": "2026-11-16",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "pagerduty-agents-in-production": {
++      "date": "2026-11-12",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "pineapple-waste-to-fish-feed": {
++      "date": "2026-11-06",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "plan-your-week-by-field": {
++      "date": "2026-11-07",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "portimao-ai-in-the-public-service": {
++      "date": "2026-11-16",
++      "level": "local",
++      "town": "portimao",
++      "region": "algarve",
++      "places": [
++        "portimao",
++        "algarve",
++        "portugal"
++      ],
++      "builds_on": [],
++      "feeds": []
++    },
++    "portugal-60-mw-computing-capacity": {
++      "date": "2026-11-16",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "portugal-on-the-programme": {
++      "date": "2026-11-09",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "portugal-tech-investment-top-10-atomico-estimate": {
++      "date": "2026-11-26",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "press-conferences-day-by-day": {
++      "date": "2026-11-09",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "priberam-kenya-broadcasters-ai-media-webinar": {
++      "date": "2026-11-26",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "promptugal-news-local-news-town-by-town": {
++      "date": "2026-11-16",
++      "level": "national",
++      "town": null,
++      "region": "portugal",
++      "places": [
++        "portugal"
++      ],
++      "builds_on": [],
++      "feeds": []
++    },
++    "reach-ai-lisbon-brands-in-ai-answers": {
++      "date": "2026-11-26",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "red-wind-warning-lisbon-wednesday": {
++      "date": "2026-11-10",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "rio-ten-startups-to-lisbon": {
++      "date": "2026-11-06",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "riskmandate-film-claude-laptop": {
++      "date": "2026-11-16",
++      "level": "local",
++      "town": "loule",
++      "region": "algarve",
++      "places": [
++        "loule",
++        "algarve",
++        "portugal"
++      ],
++      "builds_on": [],
++      "feeds": []
++    },
++    "road-2-web-summit-2026": {
++      "date": "2026-11-06",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "road-2-web-summit-beyond-lisbon": {
++      "date": "2026-11-09",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "six-people-250-agents-promptugal-news": {
++      "date": "2026-11-16",
++      "level": "local",
++      "town": "loule",
++      "region": "algarve",
++      "places": [
++        "loule",
++        "algarve",
++        "portugal"
++      ],
++      "builds_on": [],
++      "feeds": []
++    },
++    "smartex-porto-ai-fabric-checks-fadell-chair": {
++      "date": "2026-11-26",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "speed-where-its-safe-control-where-it-matters": {
++      "date": "2026-11-10",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "spotify-ai-change-outran-checks": {
++      "date": "2026-11-23",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "superhuman-to-buy-rows-porto": {
++      "date": "2026-11-19",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "teamworks-coaches-agent": {
++      "date": "2026-11-10",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "the-first-night-of-promptugal-news": {
++      "date": "2026-11-06",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "the-payment-desk-that-could-not-take-payment": {
++      "date": "2026-11-17",
++      "level": "national",
++      "town": null,
++      "region": "portugal",
++      "places": [
++        "portugal"
++      ],
++      "builds_on": [],
++      "feeds": []
++    },
++    "the-sign-in": {
++      "date": "2026-11-07",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "thursday-last-day-guide": {
++      "date": "2026-11-11",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "tiktok-for-you-dsa-preliminary-finding": {
++      "date": "2026-11-11",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "tuesday-10-november-three-ways-in": {
++      "date": "2026-11-06",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "two-studies-agent-code-size-and-review": {
++      "date": "2026-11-26",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "venue-map": {
++      "date": "2026-11-07",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "vila-real-de-santo-antonio-shipyard-robots-and-drones": {
++      "date": "2026-11-16",
++      "level": "local",
++      "town": "vila-real-de-santo-antonio",
++      "region": "algarve",
++      "places": [
++        "vila-real-de-santo-antonio",
++        "algarve",
++        "portugal"
++      ],
++      "builds_on": [],
++      "feeds": []
++    },
++    "web-summit-2026-in-numbers": {
++      "date": "2026-11-06",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "web-summit-before-2026": {
++      "date": "2026-11-06",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "web-summit-day-2-refunds": {
++      "date": "2026-11-10",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "web-summit-passes-and-colours": {
++      "date": "2026-11-09",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "web-summit-ten-lisbon-years": {
++      "date": "2026-11-06",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "web-summit-wristband-queues": {
++      "date": "2026-11-09",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "wednesday-11-november-going-abroad": {
++      "date": "2026-11-06",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "what-99-9-uptime-covers": {
++      "date": "2026-11-26",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "what-lovable-deleted": {
++      "date": "2026-11-10",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "what-the-agents-say-to-each-other": {
++      "date": "2026-11-06",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "where-to-find-portugal": {
++      "date": "2026-11-09",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "who-builds-the-parts-of-an-ai-agent": {
++      "date": "2026-11-08",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "who-does-the-work": {
++      "date": "2026-11-06",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "who-wrote-this-who-checked-it-who-signs-it": {
++      "date": "2026-11-17",
++      "level": "national",
++      "town": null,
++      "region": "portugal",
++      "places": [
++        "portugal"
++      ],
++      "builds_on": [],
++      "feeds": []
++    },
++    "why-people-trust-ai-summaries": {
++      "date": "2026-11-13",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "women-learning-and-building-ai-in-portugal": {
++      "date": "2026-11-13",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "wpp-call-transcripts-to-jira": {
++      "date": "2026-11-10",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "your-first-day-at-web-summit": {
++      "date": "2026-11-06",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    },
++    "zalando-ai-coding-agents": {
++      "date": "2026-11-11",
++      "level": "unplaced",
++      "town": null,
++      "region": null,
++      "places": [],
++      "builds_on": [],
++      "feeds": []
++    }
++  },
++  "derived": {
++    "by": "newsroom/tools/derive.mjs",
++    "from": [
++      "content/articles/",
++      "data/places/"
++    ]
++  }
++}
+diff --git a/newsroom/build/lib/datacheck.mjs b/newsroom/build/lib/datacheck.mjs
+index f01c6e77b..c3836bd1a 100644
+--- a/newsroom/build/lib/datacheck.mjs
++++ b/newsroom/build/lib/datacheck.mjs
+@@ -44,6 +44,7 @@ export const KINDS = [
+     [/^data\/site\/places-registry\.json$/, 'places-registry'],
+     [/^data\/site\/story-counts-by-place\.json$/, 'story-counts-by-place'],
+     [/^data\/site\/news-flow-by-date\.json$/, 'news-flow-by-date'],
++    [/^data\/site\/news-flow\.json$/, 'news-flow'],
+     [/^data\/stories\/[^/]+\/provenance\.json$/, 'story-provenance'],
+     [/^data\/stories\/[^/]+\/graph\.json$/, 'story-graph'],
+     [/^data\/stories\/[^/]+\/timeline\.json$/, 'story-timeline'],
+diff --git a/newsroom/build/lib/derive.mjs b/newsroom/build/lib/derive.mjs
+index 74bb761ed..ef26cb68d 100644
+--- a/newsroom/build/lib/derive.mjs
++++ b/newsroom/build/lib/derive.mjs
+@@ -11,6 +11,7 @@
+ // in memory and fails if a committed derived file differs. A derived file carries "derived"; a hand-written entity
+ // (no "derived") in the same folder always wins over a derived one with the same slug.
+ import { createHash } from 'node:crypto'
++import { LEVELS, levelOfRow, rowOf, listOf, levelOfArticle } from './article-flow.mjs'
+ import { ident, nameKey } from './ids.mjs'
+ import { listingOf, sourceKind } from './companies-map.mjs'
+ 
+@@ -322,6 +323,7 @@ export function derive({ agenda, curator, companies, places, topics, handEvents,
+     files['data/site/places-registry.json'] = { $schema: '../schemas/places-registry.schema.json', index: Object.fromEntries(places.filter(p => KEEP.has(p.kind)).flatMap(p => [[p.id, p.id], ...(p.aliases || []).map(a => [a, p.id])]).sort(([a], [b]) => byKey(a, b))), places: places.filter(p => KEEP.has(p.kind)).sort((a, b) => byKey(a.id, b.id)).map(p => ({ id: p.id, name: p.name, kind: p.kind, parent: p.located_in || null, country: p.country || countryOf(p.id), timezone: p.timezone || null, aliases: p.aliases || [], seat: p.seat || null, at: p.at || (p.seat && (places.find(q => q.id === String(p.seat).replace(/^place:/, '')) || {}).at) || null, wikidata: p.wikidata ? p.wikidata.id : null })), derived: { by: BY, from: ['data/places/'] } }
+     files['data/site/story-counts-by-place.json'] = storyCounts(files['data/site/places-registry.json'], placeNews, pipeline.articles)
+     files['data/site/news-flow-by-date.json'] = newsFlow(files['data/site/places-registry.json'], placeNews, pipeline.articles)
++    files['data/site/news-flow.json'] = articleFlow(files['data/site/places-registry.json'], pipeline.articles)
+     files['data/websummit-only.json'] = websummitOnly({ files, companies, places, handEvents, handOrgs, handPeople })
+     return { files }
+ }
+@@ -361,10 +363,9 @@ export function storyCounts(registry, placeNews, articles) {
+ // The flow of news up the levels, per day (cl-6.designer, 27 Nov 2026): every story and article counted once on its day at the level of
+ // the place it is filed under. A story filed at several levels counts at each and is listed in "stories" with all its places;
+ // nothing is dropped: no date is "undated", no place is "unplaced". Story ids are a short hash of the story's url or title.
+-export const LEVELS = ['local', 'regional', 'national', 'europe', 'unplaced']
+ export function newsFlow(registry, placeNews, articles) {
+     const idx = registry.index, row = Object.fromEntries(registry.places.map(p => [p.id, p]))
+-    const levelOf = r => !r ? 'unplaced' : r.country && r.country !== 'PT' ? 'europe' : r.kind === 'country' ? 'national' : r.kind === 'region' ? 'regional' : 'local'
++    const levelOf = levelOfRow
+     const sid = key => createHash('sha1').update(String(key)).digest('hex').slice(0, 10)
+     const empty = () => Object.fromEntries(LEVELS.map(l => [l, { stories: new Set(), articles: new Set() }]))
+     const days = {}, total = empty(), undated = { stories: new Set(), articles: new Set() }, stories = {}, partial = {}, DAY = /^\d{4}-\d{2}-\d{2}$/
+@@ -375,7 +376,7 @@ export function newsFlow(registry, placeNews, articles) {
+             const id = sid(n.key), st = (stories[id] ||= { date: n.date || null, places: new Set(), levels: new Set() })
+             st.places.add(pid); st.levels.add(lv); total[lv].stories.add(id)
+             if (DAY.test(n.date)) (days[n.date] ||= empty())[lv].stories.add(id)
+-            else { undated.stories.add(id); if (n.date) partial[n.date] = (partial[n.date] || new Set()).add(id) }
++            else { undated.stories.add(id); if (n.date) { const k = /^\d{4}(-\d{2})?$/.test(n.date) ? n.date : 'other'; partial[k] = (partial[k] || new Set()).add(id) } }
+         }
+     }
+     let placed = 0
+@@ -397,6 +398,21 @@ export function newsFlow(registry, placeNews, articles) {
+     }
+ }
+ 
++// Each article in the flow (cl-6.designer, 27 Nov 2026): its level (cl-6.dev's rule, lib/article-flow.mjs), its place chain from town or region up
++// to the country, the earlier articles it builds on (only slugs of existing articles; the gate checks the rest) and, the other way round, the
++// articles that build on it (the graph verb feeds). Untagged articles are listed as unplaced, never guessed.
++export function articleFlow(registry, articles) {
++    const row = Object.fromEntries(registry.places.map(p => [p.id, p])), slugs = new Set(articles.map(a => a.path.replace(/^content\/articles\//, '').replace(/\.md$/, '')))
++    const chain = id => { const out = []; for (let x = row[id], n = 0; x && n < 12; x = row[x.parent && String(x.parent).replace(/^place:/, '')], n++) out.push(x.id); return out }
++    const list = articles.map(a => { const slug = a.path.replace(/^content\/articles\//, '').replace(/\.md$/, ''), r = rowOf(registry, a.fm); return { slug, a, r } }).sort((x, y) => byKey(x.slug, y.slug))
++    const feeds = {}
++    for (const { slug, a } of list) for (const b of listOf(a.fm.builds_on)) if (slugs.has(b) && b !== slug) (feeds[b] ||= new Set()).add(slug)
++    const out = {}
++    for (const { slug, a, r } of list) out[slug] = { date: String(a.fm.date || '').slice(0, 10) || null, level: levelOfArticle(registry, a.fm), town: a.fm.town || null, region: a.fm.region || null, places: r ? chain(r.id) : [], builds_on: [...new Set(listOf(a.fm.builds_on).filter(b => slugs.has(b) && b !== slug))].sort(byKey), feeds: [...(feeds[slug] || [])].sort(byKey) }
++    const all = Object.values(out)
++    return { $schema: '../schemas/news-flow.schema.json', levels: LEVELS, totals: { articles: all.length, placed: all.filter(x => x.level !== 'unplaced').length, with_builds_on: all.filter(x => x.builds_on.length).length, feeds_links: all.reduce((n, x) => n + x.feeds.length, 0) }, articles: out, derived: { by: BY, from: ['content/articles/', 'data/places/'] } }
++}
++
+ // What rests only on websummit.com (Dinis, 11 Nov 2026 ~18:50; board/passes/2026-11-11-only-websummit-sourced-comes-off.md):
+ // every fact, edge, flow, product, listing and entity whose sources are all on Web Summit's hosts. Refs and ids only,
+ // never the facts themselves. An entity is "left with nothing" when none of its items has another public source.
+diff --git a/newsroom/tests/article-flow.test.mjs b/newsroom/tests/article-flow.test.mjs
+new file mode 100644
+index 000000000..a984c4fd6
+--- /dev/null
++++ b/newsroom/tests/article-flow.test.mjs
+@@ -0,0 +1,31 @@
++import test from 'node:test'
++import assert from 'node:assert/strict'
++import { articleFlow, newsFlow } from '../build/lib/derive.mjs'
++
++const registry = {
++    index: { faro: 'faro', algarve: 'algarve', portugal: 'portugal' },
++    places: [
++        { id: 'portugal', name: 'Portugal', kind: 'country', parent: null, country: 'PT', at: null },
++        { id: 'algarve', name: 'Algarve', kind: 'region', parent: 'place:portugal', country: 'PT', at: [-8, 37.2] },
++        { id: 'faro', name: 'Faro', kind: 'municipality', parent: 'place:algarve', country: 'PT', at: [-7.9, 37] },
++    ],
++}
++const art = (slug, fm) => ({ path: `content/articles/${slug}.md`, fm })
++const arts = [art('local-a', { date: '2026-11-01', town: 'faro' }), art('regional-b', { date: '2026-11-02', region: 'algarve', builds_on: '[local-a, nowhere]' }), art('national-c', { date: '2026-11-03', region: 'portugal', builds_on: 'local-a, regional-b, national-c' }), art('plain-d', { date: '2026-11-03' })]
++
++test('each article has its level and its place chain up to the country', () => {
++    const f = articleFlow(registry, arts)
++    assert.equal(f.articles['local-a'].level, 'local'); assert.deepEqual(f.articles['local-a'].places, ['faro', 'algarve', 'portugal'])
++    assert.equal(f.articles['regional-b'].level, 'regional'); assert.equal(f.articles['national-c'].level, 'national')
++    assert.equal(f.articles['plain-d'].level, 'unplaced'); assert.deepEqual(f.articles['plain-d'].places, [])
++    assert.deepEqual(f.totals, { articles: 4, placed: 3, with_builds_on: 2, feeds_links: 3 })
++})
++test('builds_on keeps only existing articles other than itself; feeds is the inverse', () => {
++    const f = articleFlow(registry, arts)
++    assert.deepEqual(f.articles['regional-b'].builds_on, ['local-a']); assert.deepEqual(f.articles['national-c'].builds_on, ['local-a', 'regional-b'])
++    assert.deepEqual(f.articles['local-a'].feeds, ['national-c', 'regional-b']); assert.deepEqual(f.articles['regional-b'].feeds, ['national-c'])
++})
++test('a partial date key that is not a year or a year-month is bucketed as other', () => {
++    const f = newsFlow(registry, [{ id: 'faro', news: [{ key: 'a', date: '2026' }, { key: 'b', date: 'Spring 2026' }] }], [])
++    assert.deepEqual(f.totals.undated.partial_dates, { '2026': 1, other: 1 })
++})
