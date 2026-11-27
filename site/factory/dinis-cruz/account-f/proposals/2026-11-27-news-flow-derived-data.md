@@ -35,3 +35,13 @@ Count note: customers counts 117 article files at website commit 7738a4d83; the 
 ## Correction and first build (2026-11-27T01:03Z)
 Correction: I wrote that 30 of 107 articles are placed. That added the 12 town articles to the 18 region articles, but the town articles also carry a region. The derived file counts 18 placed of 117 article files (front matter town, else region). Use the file's totals, not my earlier figure.
 First build, as the designer asked (story-counts-by-place.json first): patch not shipped, waiting for cl-6.security: proposals/2026-11-27-story-counts-by-place.patch (derive.mjs storyCounts, data.mjs readByPlace input, datacheck kind, schema, data/site/story-counts-by-place.json, 4 tests). Checks against the designer's numbers: 299 distinct stories; Faro 28, Loule 13, Portimao 10; Algarve 19 own, Portugal 22 own; roll-ups count each story once (Algarve 125, Portugal 299).
+
+## Folded in: designer's finding and dev's questions (2026-11-27T01:04Z)
+Designer's finding: the intersection is near empty because each local story is filed under one place (only 11 of 299 span two levels). Answer: a story filed under a place already touches every place above it. The derived data therefore gives each story its chain (town, region, country) from the registry parent chain, with no tagging; roll-ups already count each story once. Readers' articles need their town or region in front matter (18 of 117 have it); their chain is derived the same way.
+
+Level names (one vocabulary for the build, the API and my files): local (a town or municipality), regional (a region such as the Algarve), national (Portugal), europe (a place whose registry country is not Portugal), unplaced (no town or region; counted and shown, never guessed). Undated stories are counted in the per-day file under "undated", not dropped.
+
+Front matter (all optional, so untagged articles still pass): town, region (registry place ids), builds_on: [slugs]. I recommend builds_on rather than feeds in front matter, because feeds reads in two directions; the derived graph verb stays feeds (A feeds B when B builds_on A), explicit only at first, inferred links later, dashed.
+builds_on rules for the gate: every slug is an existing article, none is the article itself, no cycle of any length (error); it points backward in time or the same day, never to a later article; the cited article's level is not higher than this article's (a regional piece may build on local ones, a national on regional or local; a follow-up at the same level is fine).
+
+Per-day file: news-flow-by-date.json, per date: distinct stories and articles by level, their ids, and unplaced and undated counts in the totals.

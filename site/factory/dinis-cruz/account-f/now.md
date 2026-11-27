@@ -53,3 +53,6 @@ News-flow proposal sent to designer, dev, customers, journalist (proposals/2026-
 
 ## 27 Nov (2026-11-27T01:03Z)
 Built story-counts-by-place.json (designer first ask): patch in proposals/, gate OK on the website, 4 tests, not shipped; sent to cl-6.security. Corrected my 30-placed figure to 18 of 117. Next after security: news-flow-by-date.json, then news-flow.json.
+
+## 27 Nov (2026-11-27T01:04Z)
+Answered conductor and dev on the news-flow tagging: level names local, regional, national, europe, unplaced; front matter town, region, builds_on (derived verb feeds); gate rules for builds_on; unplaced and undated counted and shown. See proposals/2026-11-27-news-flow-derived-data.md (section Folded in).
