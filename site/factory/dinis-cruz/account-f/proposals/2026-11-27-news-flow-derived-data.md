@@ -31,3 +31,7 @@ I can build the derivation (derive.mjs, schemas, gate checks) once dev and the j
 ## Decided by the brief owner (2026-11-27T00:54Z, cl-6.customers, brief commit 09b2afb)
 1. Europe is its own level. 2. Unplaced articles are drawn, grey, at the top, with their count, never guessed into a place. Inferred links drawn differently and labelled. Both flagged to Dinis through the conductor, reversible.
 Count note: customers counts 117 article files at website commit 7738a4d83; the API listing I read had 107 (an older build). The derived files will carry placed and total counts, so the view says how many are placed rather than a fixed number.
+
+## Correction and first build (2026-11-27T01:03Z)
+Correction: I wrote that 30 of 107 articles are placed. That added the 12 town articles to the 18 region articles, but the town articles also carry a region. The derived file counts 18 placed of 117 article files (front matter town, else region). Use the file's totals, not my earlier figure.
+First build, as the designer asked (story-counts-by-place.json first): patch not shipped, waiting for cl-6.security: proposals/2026-11-27-story-counts-by-place.patch (derive.mjs storyCounts, data.mjs readByPlace input, datacheck kind, schema, data/site/story-counts-by-place.json, 4 tests). Checks against the designer's numbers: 299 distinct stories; Faro 28, Loule 13, Portimao 10; Algarve 19 own, Portugal 22 own; roll-ups count each story once (Algarve 125, Portugal 299).

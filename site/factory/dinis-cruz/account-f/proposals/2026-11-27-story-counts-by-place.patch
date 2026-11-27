@@ -1,0 +1,1132 @@
+diff --git a/data/schemas/story-counts-by-place.schema.json b/data/schemas/story-counts-by-place.schema.json
+new file mode 100644
+index 000000000..b91561676
+--- /dev/null
++++ b/data/schemas/story-counts-by-place.schema.json
+@@ -0,0 +1,56 @@
++{
++  "$schema": "https://json-schema.org/draft/2020-12/schema",
++  "$id": "https://promptugal.news/data/schemas/story-counts-by-place.schema.json",
++  "title": "Stories per place for the map (data/site/story-counts-by-place.json, derived by newsroom/tools/derive.mjs)",
++  "description": "local_stories is what the place's own page lists (data/by-place/<id>.json, ai_news) and is what the map draws; articles are the readers' articles tagged to the place in their front matter; rolled_up counts each story once for the place and every place above it.",
++  "type": "object",
++  "required": ["map_uses", "totals", "unresolved", "places", "derived"],
++  "properties": {
++    "$schema": { "$ref": "common.schema.json#/$defs/schema_link" },
++    "map_uses": { "const": "local_stories" },
++    "totals": {
++      "type": "object",
++      "required": ["local_stories_distinct", "articles_total", "articles_placed"],
++      "properties": {
++        "local_stories_distinct": { "type": "integer", "minimum": 0 },
++        "articles_total": { "type": "integer", "minimum": 0 },
++        "articles_placed": { "type": "integer", "minimum": 0 }
++      },
++      "additionalProperties": false
++    },
++    "unresolved": {
++      "type": "object",
++      "required": ["by_place_files", "articles"],
++      "properties": {
++        "by_place_files": { "type": "array", "items": { "type": "string" } },
++        "articles": { "type": "array", "items": { "type": "string" } }
++      },
++      "additionalProperties": false
++    },
++    "places": {
++      "type": "object",
++      "additionalProperties": {
++        "type": "object",
++        "required": ["name", "kind", "parent", "at", "local_stories", "articles", "local_by_date", "rolled_up"],
++        "properties": {
++          "name": { "type": "string" },
++          "kind": { "type": "string" },
++          "parent": { "type": ["string", "null"] },
++          "at": { "type": ["array", "null"], "items": { "type": "number" }, "minItems": 2, "maxItems": 2 },
++          "local_stories": { "type": "integer", "minimum": 0 },
++          "articles": { "type": "integer", "minimum": 0 },
++          "local_by_date": { "type": "object", "additionalProperties": { "type": "integer", "minimum": 1 } },
++          "rolled_up": {
++            "type": "object",
++            "required": ["local_stories", "articles"],
++            "properties": { "local_stories": { "type": "integer", "minimum": 0 }, "articles": { "type": "integer", "minimum": 0 } },
++            "additionalProperties": false
++          }
++        },
++        "additionalProperties": false
++      }
++    },
++    "derived": { "$ref": "common.schema.json#/$defs/derived" }
++  },
++  "additionalProperties": false
++}
+diff --git a/data/site/story-counts-by-place.json b/data/site/story-counts-by-place.json
+new file mode 100644
+index 000000000..608011c4c
+--- /dev/null
++++ b/data/site/story-counts-by-place.json
+@@ -0,0 +1,923 @@
++{
++  "$schema": "../schemas/story-counts-by-place.schema.json",
++  "map_uses": "local_stories",
++  "totals": {
++    "local_stories_distinct": 299,
++    "articles_total": 117,
++    "articles_placed": 18
++  },
++  "unresolved": {
++    "by_place_files": [],
++    "articles": []
++  },
++  "places": {
++    "albufeira": {
++      "name": "Albufeira",
++      "kind": "municipality",
++      "parent": "place:algarve",
++      "at": [
++        -8.25,
++        37.089
++      ],
++      "local_stories": 6,
++      "articles": 0,
++      "local_by_date": {
++        "2024-05-02": 1,
++        "2026-02-24": 1,
++        "2026-06-11": 1,
++        "2026-06-16": 1,
++        "2026-10-20": 1,
++        "2026-11-02": 1
++      },
++      "rolled_up": {
++        "local_stories": 6,
++        "articles": 0
++      }
++    },
++    "alcoutim": {
++      "name": "Alcoutim",
++      "kind": "municipality",
++      "parent": "place:algarve",
++      "at": [
++        -7.471,
++        37.471
++      ],
++      "local_stories": 7,
++      "articles": 2,
++      "local_by_date": {
++        "2025-05-08": 1,
++        "2026-03-25": 1,
++        "2026-06-09": 1,
++        "2026-06-12": 1,
++        "2026-09-18": 1,
++        "2026-09-25": 2
++      },
++      "rolled_up": {
++        "local_stories": 7,
++        "articles": 2
++      }
++    },
++    "algarve": {
++      "name": "Algarve",
++      "kind": "region",
++      "parent": "place:portugal",
++      "at": [
++        -8.0111,
++        37.2338
++      ],
++      "local_stories": 19,
++      "articles": 2,
++      "local_by_date": {
++        "2025-10-01": 1,
++        "2025-11-18": 1,
++        "2026-02-23": 1,
++        "2026-03-19": 1,
++        "2026-03-20": 1,
++        "2026-03-26": 1,
++        "2026-04-16": 1,
++        "2026-04-23": 1,
++        "2026-05-06": 1,
++        "2026-07-03": 1,
++        "2026-07-10": 1,
++        "2026-07-17": 1,
++        "2026-07-22": 1,
++        "2026-09-10": 1,
++        "2026-09-24": 1,
++        "2026-10-12": 1,
++        "2026-10-19": 1,
++        "2026-11-06": 1,
++        "2026-11-11": 1
++      },
++      "rolled_up": {
++        "local_stories": 125,
++        "articles": 14
++      }
++    },
++    "aljezur": {
++      "name": "Aljezur",
++      "kind": "municipality",
++      "parent": "place:algarve",
++      "at": [
++        -8.803,
++        37.318
++      ],
++      "local_stories": 5,
++      "articles": 0,
++      "local_by_date": {
++        "2022-09-30": 1,
++        "2025-10-08": 1,
++        "2026-02-23": 1,
++        "2026-03-20": 1,
++        "2026-03-31": 1
++      },
++      "rolled_up": {
++        "local_stories": 5,
++        "articles": 0
++      }
++    },
++    "aveiro": {
++      "name": "Aveiro",
++      "kind": "city",
++      "parent": "place:portugal",
++      "at": [
++        -8.654,
++        40.64
++      ],
++      "local_stories": 6,
++      "articles": 0,
++      "local_by_date": {
++        "2026-01-28": 1,
++        "2026-03-25": 1,
++        "2026-06-22": 1,
++        "2026-07-24": 1,
++        "2026-11-03": 1,
++        "2026-11-15": 1
++      },
++      "rolled_up": {
++        "local_stories": 6,
++        "articles": 0
++      }
++    },
++    "beja": {
++      "name": "Beja",
++      "kind": "city",
++      "parent": "place:portugal",
++      "at": [
++        -7.863,
++        38.015
++      ],
++      "local_stories": 8,
++      "articles": 0,
++      "local_by_date": {
++        "2025-04-29": 1,
++        "2025-11-27": 1,
++        "2025-12-05": 1,
++        "2026-03-18": 1,
++        "2026-04-28": 1,
++        "2026-09-02": 1,
++        "2026-10-20": 1,
++        "2026-11-14": 1
++      },
++      "rolled_up": {
++        "local_stories": 8,
++        "articles": 0
++      }
++    },
++    "braga": {
++      "name": "Braga",
++      "kind": "city",
++      "parent": "place:portugal",
++      "at": [
++        -8.426,
++        41.551
++      ],
++      "local_stories": 8,
++      "articles": 0,
++      "local_by_date": {
++        "2025-01-29": 1,
++        "2025-08-18": 1,
++        "2026-02-19": 1,
++        "2026-07-07": 1,
++        "2026-08-19": 1,
++        "2026-10-09": 1,
++        "2026-11-05": 1,
++        "2026-11-10": 1
++      },
++      "rolled_up": {
++        "local_stories": 8,
++        "articles": 0
++      }
++    },
++    "braganca": {
++      "name": "Bragança",
++      "kind": "city",
++      "parent": "place:portugal",
++      "at": [
++        -6.757,
++        41.806
++      ],
++      "local_stories": 12,
++      "articles": 0,
++      "local_by_date": {
++        "2025-04-10": 1,
++        "2025-09-16": 1,
++        "2025-12-06": 1,
++        "2026-02-28": 1,
++        "2026-04-10": 1,
++        "2026-05-08": 1,
++        "2026-05-19": 1,
++        "2026-06-03": 1,
++        "2026-07-18": 1,
++        "2026-09-09": 1,
++        "2026-09-22": 1,
++        "2026-10-28": 1
++      },
++      "rolled_up": {
++        "local_stories": 12,
++        "articles": 0
++      }
++    },
++    "castelo-branco": {
++      "name": "Castelo Branco",
++      "kind": "city",
++      "parent": "place:portugal",
++      "at": [
++        -7.508,
++        39.822
++      ],
++      "local_stories": 7,
++      "articles": 0,
++      "local_by_date": {
++        "2025-02-04": 1,
++        "2025-02-14": 1,
++        "2025-03-30": 1,
++        "2025-04-07": 1,
++        "2026-01-16": 1,
++        "2026-08-21": 1,
++        "2026-09-10": 1
++      },
++      "rolled_up": {
++        "local_stories": 7,
++        "articles": 0
++      }
++    },
++    "castro-marim": {
++      "name": "Castro Marim",
++      "kind": "municipality",
++      "parent": "place:algarve",
++      "at": [
++        -7.443,
++        37.218
++      ],
++      "local_stories": 4,
++      "articles": 0,
++      "local_by_date": {
++        "2024-01-25": 1,
++        "2026-07-02": 1,
++        "2026-07-07": 1,
++        "2026-07-11": 1
++      },
++      "rolled_up": {
++        "local_stories": 4,
++        "articles": 0
++      }
++    },
++    "coimbra": {
++      "name": "Coimbra",
++      "kind": "city",
++      "parent": "place:portugal",
++      "at": [
++        -8.429,
++        40.205
++      ],
++      "local_stories": 12,
++      "articles": 0,
++      "local_by_date": {
++        "2024-06-28": 1,
++        "2025-06-15": 1,
++        "2025-06-17": 1,
++        "2026-04-30": 1,
++        "2026-05-08": 1,
++        "2026-06-08": 1,
++        "2026-08-03": 1,
++        "2026-09-01": 1,
++        "2026-09-11": 1,
++        "2026-09-18": 1,
++        "2026-11-02": 1,
++        "2026-11-11": 1
++      },
++      "rolled_up": {
++        "local_stories": 12,
++        "articles": 0
++      }
++    },
++    "evora": {
++      "name": "Évora",
++      "kind": "city",
++      "parent": "place:portugal",
++      "at": [
++        -7.909,
++        38.571
++      ],
++      "local_stories": 6,
++      "articles": 0,
++      "local_by_date": {
++        "2025-11-28": 1,
++        "2026-02-06": 1,
++        "2026-03-06": 1,
++        "2026-04-20": 1,
++        "2026-10-02": 1,
++        "2026-10-16": 1
++      },
++      "rolled_up": {
++        "local_stories": 6,
++        "articles": 0
++      }
++    },
++    "faro": {
++      "name": "Faro",
++      "kind": "municipality",
++      "parent": "place:algarve",
++      "at": [
++        -7.935,
++        37.019
++      ],
++      "local_stories": 28,
++      "articles": 1,
++      "local_by_date": {
++        "2025-03-19": 1,
++        "2025-06-17": 1,
++        "2026-02-16": 1,
++        "2026-02-18": 1,
++        "2026-03-19": 1,
++        "2026-03-20": 1,
++        "2026-03-26": 1,
++        "2026-04-08": 1,
++        "2026-04-23": 1,
++        "2026-05-29": 1,
++        "2026-06-19": 1,
++        "2026-06-20": 1,
++        "2026-06-22": 1,
++        "2026-07-10": 1,
++        "2026-07-17": 2,
++        "2026-07-18": 1,
++        "2026-09-10": 1,
++        "2026-09-24": 2,
++        "2026-10-06": 1,
++        "2026-10-08": 1,
++        "2026-10-16": 1,
++        "2026-10-22": 1,
++        "2026-10-31": 1,
++        "2026-11-06": 1,
++        "2026-11-12": 1,
++        "2026-11-16": 1
++      },
++      "rolled_up": {
++        "local_stories": 28,
++        "articles": 1
++      }
++    },
++    "guarda": {
++      "name": "Guarda",
++      "kind": "city",
++      "parent": "place:portugal",
++      "at": [
++        -7.268,
++        40.538
++      ],
++      "local_stories": 5,
++      "articles": 0,
++      "local_by_date": {
++        "2025-02-14": 1,
++        "2025-06-23": 1,
++        "2025-09-30": 1,
++        "2026-04-05": 1,
++        "2026-04-08": 1
++      },
++      "rolled_up": {
++        "local_stories": 5,
++        "articles": 0
++      }
++    },
++    "lagoa": {
++      "name": "Lagoa",
++      "kind": "municipality",
++      "parent": "place:algarve",
++      "at": [
++        -8.453,
++        37.135
++      ],
++      "local_stories": 4,
++      "articles": 0,
++      "local_by_date": {
++        "2025-02-28": 1,
++        "2025-05-20": 1,
++        "2025-05-28": 1,
++        "2025-12-05": 1
++      },
++      "rolled_up": {
++        "local_stories": 4,
++        "articles": 0
++      }
++    },
++    "lagos": {
++      "name": "Lagos",
++      "kind": "municipality",
++      "parent": "place:algarve",
++      "at": [
++        -8.673,
++        37.102
++      ],
++      "local_stories": 3,
++      "articles": 1,
++      "local_by_date": {
++        "2025-04-15": 1,
++        "2025-10-23": 1,
++        "2025-11-04": 1
++      },
++      "rolled_up": {
++        "local_stories": 3,
++        "articles": 1
++      }
++    },
++    "leiria": {
++      "name": "Leiria",
++      "kind": "city",
++      "parent": "place:portugal",
++      "at": [
++        -8.807,
++        39.744
++      ],
++      "local_stories": 9,
++      "articles": 0,
++      "local_by_date": {
++        "2026-02-02": 1,
++        "2026-02-12": 1,
++        "2026-06": 1,
++        "2026-07-03": 1,
++        "2026-07-25": 1,
++        "2026-09-29": 1,
++        "2026-10-13": 1,
++        "2026-10-30": 1,
++        "2026-11-02": 1
++      },
++      "rolled_up": {
++        "local_stories": 9,
++        "articles": 0
++      }
++    },
++    "lisbon": {
++      "name": "Lisbon",
++      "kind": "city",
++      "parent": "place:portugal",
++      "at": [
++        -9.139,
++        38.722
++      ],
++      "local_stories": 10,
++      "articles": 0,
++      "local_by_date": {
++        "2026-02-26": 1,
++        "2026-03-03": 1,
++        "2026-04-22": 1,
++        "2026-04-28": 1,
++        "2026-06-01": 1,
++        "2026-07-02": 1,
++        "2026-07-18": 1,
++        "2026-07-24": 1,
++        "2026-11-05": 1,
++        "2026-11-16": 1
++      },
++      "rolled_up": {
++        "local_stories": 10,
++        "articles": 0
++      }
++    },
++    "loule": {
++      "name": "Loulé",
++      "kind": "municipality",
++      "parent": "place:algarve",
++      "at": [
++        -8.023,
++        37.138
++      ],
++      "local_stories": 13,
++      "articles": 4,
++      "local_by_date": {
++        "2023-04-14": 1,
++        "2023-05-18": 1,
++        "2024-11-18": 1,
++        "2025-01-23": 1,
++        "2025-03-11": 1,
++        "2025-07-14": 1,
++        "2025-12-22": 1,
++        "2026-02-22": 1,
++        "2026-07-28": 1,
++        "2026-09-24": 2,
++        "2026-11-14": 1,
++        "2026-11-16": 1
++      },
++      "rolled_up": {
++        "local_stories": 18,
++        "articles": 4
++      }
++    },
++    "monchique": {
++      "name": "Monchique",
++      "kind": "municipality",
++      "parent": "place:algarve",
++      "at": [
++        -8.555,
++        37.317
++      ],
++      "local_stories": 5,
++      "articles": 1,
++      "local_by_date": {
++        "2021-11-02": 1,
++        "2024-05-29": 1,
++        "2025-03-27": 1,
++        "2025-10-21": 1,
++        "2026-03-23": 1
++      },
++      "rolled_up": {
++        "local_stories": 5,
++        "articles": 1
++      }
++    },
++    "olhao": {
++      "name": "Olhão",
++      "kind": "municipality",
++      "parent": "place:algarve",
++      "at": [
++        -7.841,
++        37.026
++      ],
++      "local_stories": 11,
++      "articles": 1,
++      "local_by_date": {
++        "2021-05-12": 1,
++        "2023-01-19": 1,
++        "2024-04-04": 1,
++        "2026-02-09": 1,
++        "2026-02-23": 1,
++        "2026-02-25": 1,
++        "2026-03-02": 1,
++        "2026-03-03": 1,
++        "2026-10-19": 1,
++        "2026-11-16": 1,
++        "2026-11-17": 1
++      },
++      "rolled_up": {
++        "local_stories": 11,
++        "articles": 1
++      }
++    },
++    "portalegre": {
++      "name": "Portalegre",
++      "kind": "city",
++      "parent": "place:portugal",
++      "at": [
++        -7.431,
++        39.294
++      ],
++      "local_stories": 8,
++      "articles": 0,
++      "local_by_date": {
++        "2025-07-15": 1,
++        "2026-05-21": 1,
++        "2026-09-01": 2,
++        "2026-09-18": 1,
++        "2026-10-23": 1,
++        "2026-11-06": 1,
++        "2026-11-16": 1
++      },
++      "rolled_up": {
++        "local_stories": 8,
++        "articles": 0
++      }
++    },
++    "portimao": {
++      "name": "Portimão",
++      "kind": "municipality",
++      "parent": "place:algarve",
++      "at": [
++        -8.537,
++        37.138
++      ],
++      "local_stories": 10,
++      "articles": 1,
++      "local_by_date": {
++        "2025-01-22": 1,
++        "2025-08-21": 1,
++        "2026-02-12": 1,
++        "2026-02-23": 1,
++        "2026-03-04": 1,
++        "2026-06-09": 1,
++        "2026-07-03": 1,
++        "2026-07-23": 1,
++        "2026-10-19": 1,
++        "2026-11-10": 1
++      },
++      "rolled_up": {
++        "local_stories": 10,
++        "articles": 1
++      }
++    },
++    "porto": {
++      "name": "Porto",
++      "kind": "city",
++      "parent": "place:portugal",
++      "at": [
++        -8.611,
++        41.15
++      ],
++      "local_stories": 15,
++      "articles": 0,
++      "local_by_date": {
++        "2026-05-20": 1,
++        "2026-05-27": 1,
++        "2026-07-08": 3,
++        "2026-07-17": 1,
++        "2026-08-19": 1,
++        "2026-09-01": 1,
++        "2026-09-17": 1,
++        "2026-10-26": 1,
++        "2026-10-28": 1,
++        "2026-11-02": 1,
++        "2026-11-06": 1,
++        "2026-11-10": 1,
++        "2026-11-16": 1
++      },
++      "rolled_up": {
++        "local_stories": 15,
++        "articles": 0
++      }
++    },
++    "portugal": {
++      "name": "Portugal",
++      "kind": "country",
++      "parent": null,
++      "at": null,
++      "local_stories": 22,
++      "articles": 4,
++      "local_by_date": {
++        "2025-10-21": 1,
++        "2025-12-14": 1,
++        "2026-01-08": 2,
++        "2026-02-26": 1,
++        "2026-03-03": 1,
++        "2026-03-12": 1,
++        "2026-04": 1,
++        "2026-04-08": 1,
++        "2026-04-22": 1,
++        "2026-05": 1,
++        "2026-05-05": 1,
++        "2026-06-01": 1,
++        "2026-06-19": 1,
++        "2026-06-26": 1,
++        "2026-07-01": 1,
++        "2026-07-15": 1,
++        "2026-07-18": 1,
++        "2026-08-05": 1,
++        "2026-09-15": 1,
++        "2026-09-25": 1,
++        "2026-11-03": 1
++      },
++      "rolled_up": {
++        "local_stories": 299,
++        "articles": 18
++      }
++    },
++    "quarteira": {
++      "name": "Quarteira",
++      "kind": "city",
++      "parent": "place:loule",
++      "at": [
++        -8.103,
++        37.069
++      ],
++      "local_stories": 6,
++      "articles": 0,
++      "local_by_date": {
++        "2020-05-05": 1,
++        "2025-03-06": 1,
++        "2026-03-11": 1,
++        "2026-03-20": 1,
++        "2026-06-23": 1,
++        "2026-07-28": 1
++      },
++      "rolled_up": {
++        "local_stories": 6,
++        "articles": 0
++      }
++    },
++    "santarem": {
++      "name": "Santarém",
++      "kind": "city",
++      "parent": "place:portugal",
++      "at": [
++        -8.686,
++        39.236
++      ],
++      "local_stories": 9,
++      "articles": 0,
++      "local_by_date": {
++        "2025-10-01": 1,
++        "2025-12-04": 1,
++        "2026-02-25": 1,
++        "2026-03-05": 1,
++        "2026-08-08": 1,
++        "2026-08-17": 1,
++        "2026-10-02": 1,
++        "2026-11-09": 1,
++        "2026-11-13": 1
++      },
++      "rolled_up": {
++        "local_stories": 9,
++        "articles": 0
++      }
++    },
++    "sao-bras-de-alportel": {
++      "name": "São Brás de Alportel",
++      "kind": "municipality",
++      "parent": "place:algarve",
++      "at": [
++        -7.888,
++        37.153
++      ],
++      "local_stories": 7,
++      "articles": 0,
++      "local_by_date": {
++        "2024-04-08": 1,
++        "2024-10-15": 1,
++        "2025-06-26": 1,
++        "2026-03-02": 1,
++        "2026-04-29": 1,
++        "2026-11-02": 1,
++        "2026-11-16": 1
++      },
++      "rolled_up": {
++        "local_stories": 7,
++        "articles": 0
++      }
++    },
++    "setubal": {
++      "name": "Setúbal",
++      "kind": "city",
++      "parent": "place:portugal",
++      "at": [
++        -8.893,
++        38.524
++      ],
++      "local_stories": 9,
++      "articles": 0,
++      "local_by_date": {
++        "2025-03-11": 1,
++        "2025-07-16": 1,
++        "2026-01-28": 1,
++        "2026-02-24": 1,
++        "2026-03-31": 1,
++        "2026-07-14": 1,
++        "2026-10-28": 1,
++        "2026-11-05": 1,
++        "2026-11-06": 1
++      },
++      "rolled_up": {
++        "local_stories": 9,
++        "articles": 0
++      }
++    },
++    "silves": {
++      "name": "Silves",
++      "kind": "municipality",
++      "parent": "place:algarve",
++      "at": [
++        -8.44,
++        37.189
++      ],
++      "local_stories": 2,
++      "articles": 0,
++      "local_by_date": {
++        "2024-08-14": 1,
++        "2026-03-17": 1
++      },
++      "rolled_up": {
++        "local_stories": 2,
++        "articles": 0
++      }
++    },
++    "tavira": {
++      "name": "Tavira",
++      "kind": "municipality",
++      "parent": "place:algarve",
++      "at": [
++        -7.649,
++        37.127
++      ],
++      "local_stories": 4,
++      "articles": 0,
++      "local_by_date": {
++        "2021-11-26": 1,
++        "2024-12-20": 1,
++        "2025-05": 1,
++        "2026-04-15": 1
++      },
++      "rolled_up": {
++        "local_stories": 4,
++        "articles": 0
++      }
++    },
++    "viana-do-castelo": {
++      "name": "Viana do Castelo",
++      "kind": "city",
++      "parent": "place:portugal",
++      "at": [
++        -8.832,
++        41.693
++      ],
++      "local_stories": 7,
++      "articles": 0,
++      "local_by_date": {
++        "2025-05-01": 1,
++        "2025-11-18": 1,
++        "2026-02-18": 1,
++        "2026-04-09": 1,
++        "2026-07-24": 1,
++        "2026-09-04": 1,
++        "2026-10-14": 1
++      },
++      "rolled_up": {
++        "local_stories": 7,
++        "articles": 0
++      }
++    },
++    "vila-real": {
++      "name": "Vila Real",
++      "kind": "city",
++      "parent": "place:portugal",
++      "at": [
++        -7.745,
++        41.301
++      ],
++      "local_stories": 14,
++      "articles": 0,
++      "local_by_date": {
++        "2025-02-14": 1,
++        "2025-05-19": 1,
++        "2026-01-08": 1,
++        "2026-01-12": 1,
++        "2026-01-14": 1,
++        "2026-01-27": 1,
++        "2026-02-03": 1,
++        "2026-03-10": 1,
++        "2026-06-24": 1,
++        "2026-09-09": 1,
++        "2026-09-16": 1,
++        "2026-09-18": 1,
++        "2026-10-16": 1,
++        "2026-10-28": 1
++      },
++      "rolled_up": {
++        "local_stories": 14,
++        "articles": 0
++      }
++    },
++    "vila-real-de-santo-antonio": {
++      "name": "Vila Real de Santo António",
++      "kind": "municipality",
++      "parent": "place:algarve",
++      "at": [
++        -7.418,
++        37.195
++      ],
++      "local_stories": 4,
++      "articles": 1,
++      "local_by_date": {
++        "2024-03-15": 1,
++        "2025-12-17": 1,
++        "2026-05-18": 1,
++        "2026-09-25": 1
++      },
++      "rolled_up": {
++        "local_stories": 4,
++        "articles": 1
++      }
++    },
++    "viseu": {
++      "name": "Viseu",
++      "kind": "city",
++      "parent": "place:portugal",
++      "at": [
++        -7.912,
++        40.661
++      ],
++      "local_stories": 11,
++      "articles": 0,
++      "local_by_date": {
++        "2026": 1,
++        "2025-02-21": 1,
++        "2025-12-10": 1,
++        "2026-02-06": 1,
++        "2026-02-12": 1,
++        "2026-03-14": 1,
++        "2026-05-15": 1,
++        "2026-05-22": 1,
++        "2026-09-08": 1,
++        "2026-09-29": 1,
++        "2026-10-29": 1
++      },
++      "rolled_up": {
++        "local_stories": 11,
++        "articles": 0
++      }
++    }
++  },
++  "derived": {
++    "by": "newsroom/tools/derive.mjs",
++    "from": [
++      "data/by-place/",
++      "content/articles/",
++      "data/places/"
++    ]
++  }
++}
+diff --git a/newsroom/build/lib/data.mjs b/newsroom/build/lib/data.mjs
+index c1fa2e381..52bb91181 100644
+--- a/newsroom/build/lib/data.mjs
++++ b/newsroom/build/lib/data.mjs
+@@ -58,6 +58,15 @@ export function readPipeline() {
+     }
+ }
+ 
++// each place's own stories (data/by-place/<id>.json, ai_news: written by the places' agents, read here only to count them)
++export function readByPlace() {
++    const dir = R('data/by-place')
++    if (!fs.existsSync(dir)) return []
++    return fs.readdirSync(dir).filter(f => f.endsWith('.json')).sort().map(f => { try { return JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8')) } catch { return null } })
++        .filter(d => d && typeof d.id === 'string' && Array.isArray(d.ai_news))
++        .map(d => ({ id: d.id, news: d.ai_news.map(n => ({ key: n.url || n.title, date: String(n.date || '').slice(0, 10) })) }))
++}
++
+ export function derivationInputs() {
+     const isHand = x => !x.derived
+     return {
+@@ -70,6 +79,7 @@ export function derivationInputs() {
+         handOrgs: readFolder('organisation').filter(isHand),
+         handPeople: readFolder('person').filter(isHand),
+         pipeline: readPipeline(),
++        placeNews: readByPlace(),
+         curation: { organisations: readJSON('data/curation/organisations.json'), events: readJSON('data/curation/events.json'), speakers: readJSON('data/curation/speakers.json') },
+     }
+ }
+diff --git a/newsroom/build/lib/datacheck.mjs b/newsroom/build/lib/datacheck.mjs
+index 0441c03fa..51ac98f3d 100644
+--- a/newsroom/build/lib/datacheck.mjs
++++ b/newsroom/build/lib/datacheck.mjs
+@@ -42,6 +42,7 @@ export const KINDS = [
+     [/^data\/stories\/[^/]+\/claims\.json$/, 'story-claims'],
+     [/^data\/media\/by-place\.json$/, 'media-by-place'],
+     [/^data\/site\/places-registry\.json$/, 'places-registry'],
++    [/^data\/site\/story-counts-by-place\.json$/, 'story-counts-by-place'],
+     [/^data\/stories\/[^/]+\/provenance\.json$/, 'story-provenance'],
+     [/^data\/stories\/[^/]+\/graph\.json$/, 'story-graph'],
+     [/^data\/stories\/[^/]+\/timeline\.json$/, 'story-timeline'],
+diff --git a/newsroom/build/lib/derive.mjs b/newsroom/build/lib/derive.mjs
+index f9e8c0f51..7ddbadf1b 100644
+--- a/newsroom/build/lib/derive.mjs
++++ b/newsroom/build/lib/derive.mjs
+@@ -64,7 +64,7 @@ const sessionSlug = url => { const m = String(url || '').match(/websummit\.com\/
+ const titleBase = what => ident(String(what).replace(/\s*[:(].*$/, '').trim() || what, 48)
+ const byKey = (a, b) => a < b ? -1 : a > b ? 1 : 0
+ 
+-export function derive({ agenda, curator, companies, places, topics, handEvents, handOrgs, handPeople, curation, pipeline = { ideas: [], drafts: [], checks: [], reviews: [], articles: [] } }) {
++export function derive({ agenda, curator, companies, places, topics, handEvents, handOrgs, handPeople, curation, pipeline = { ideas: [], drafts: [], checks: [], reviews: [], articles: [] }, placeNews = [] }) {
+     const files = {}
+     const report = { speaker_organisations: { matched: [], unmatched: [], near_misses: [] }, places: { unmatched_where: [] }, tracks: { mapped: [], unmapped: [] }, company_sessions: { resolved: [], unresolved: [] }, people: { merged_listings: [] }, evidence_names: { matched: [], unmatched: [] }, hosted_by: [], handles_dropped: 0 }
+ 
+@@ -319,10 +319,43 @@ export function derive({ agenda, curator, companies, places, topics, handEvents,
+     const KEEP = new Set(['country', 'region', 'city', 'district', 'municipality', 'borough'])
+     const countryOf = id => { for (let x = places.find(p => p.id === id), n = 0; x && n < 12; x = places.find(p => p.id === String(x.located_in || '').replace(/^place:/, '')), n++) { if (x.country) return x.country } return null }
+     files['data/site/places-registry.json'] = { $schema: '../schemas/places-registry.schema.json', index: Object.fromEntries(places.filter(p => KEEP.has(p.kind)).flatMap(p => [[p.id, p.id], ...(p.aliases || []).map(a => [a, p.id])]).sort(([a], [b]) => byKey(a, b))), places: places.filter(p => KEEP.has(p.kind)).sort((a, b) => byKey(a.id, b.id)).map(p => ({ id: p.id, name: p.name, kind: p.kind, parent: p.located_in || null, country: p.country || countryOf(p.id), timezone: p.timezone || null, aliases: p.aliases || [], seat: p.seat || null, at: p.at || (p.seat && (places.find(q => q.id === String(p.seat).replace(/^place:/, '')) || {}).at) || null, wikidata: p.wikidata ? p.wikidata.id : null })), derived: { by: BY, from: ['data/places/'] } }
++    files['data/site/story-counts-by-place.json'] = storyCounts(files['data/site/places-registry.json'], placeNews, pipeline.articles)
+     files['data/websummit-only.json'] = websummitOnly({ files, companies, places, handEvents, handOrgs, handPeople })
+     return { files }
+ }
+ 
++// Stories per place for the map (cl-6.designer, 27 Nov 2026): local_stories is the length of the place's own ai_news list (what the
++// place's page shows; the map uses it), articles are the readers' articles tagged to the place in their front matter (town, else
++// region), shown on hover. rolled_up counts each story once for the place and every place above it (registry parent chain).
++export function storyCounts(registry, placeNews, articles) {
++    const idx = registry.index, row = Object.fromEntries(registry.places.map(p => [p.id, p]))
++    const chain = id => { const out = []; for (let x = row[id], n = 0; x && n < 12; x = row[x.parent && String(x.parent).replace(/^place:/, '')], n++) out.push(x.id); return out }
++    const own = {}, rolled = {}, unresolved = { by_place_files: [], articles: [] }
++    const at = (id, k) => (own[id] ||= { stories: new Map(), articles: new Set() })[k]
++    const roll = (id, k, key) => { for (const c of chain(id)) ((rolled[c] ||= { stories: new Set(), articles: new Set() })[k]).add(key) }
++    for (const f of placeNews) {
++        const id = idx[f.id]
++        if (!id) { unresolved.by_place_files.push(f.id); continue }
++        for (const n of f.news) { at(id, 'stories').set(n.key + '|' + f.id, n.date); roll(id, 'stories', n.key) }
++    }
++    let placed = 0
++    for (const a of articles) {
++        const slug = a.path.replace(/^content\/articles\//, '').replace(/\.md$/, ''), want = a.fm.town || a.fm.region
++        if (!want) continue
++        const id = idx[String(want).toLowerCase()]
++        if (!id) { unresolved.articles.push(`${slug}: ${want}`); continue }
++        at(id, 'articles').add(slug); roll(id, 'articles', slug); placed++
++    }
++    const places = {}
++    for (const id of Object.keys(rolled).sort(byKey)) {
++        const p = row[id], o = own[id] || { stories: new Map(), articles: new Set() }, byDate = {}
++        for (const d of o.stories.values()) if (d) byDate[d] = (byDate[d] || 0) + 1
++        places[id] = { name: p.name, kind: p.kind, parent: p.parent, at: p.at, local_stories: o.stories.size, articles: o.articles.size, local_by_date: Object.fromEntries(Object.entries(byDate).sort(([a], [b]) => byKey(a, b))), rolled_up: { local_stories: rolled[id].stories.size, articles: rolled[id].articles.size } }
++    }
++    const distinct = new Set(placeNews.flatMap(f => f.news.map(n => n.key)))
++    return { $schema: '../schemas/story-counts-by-place.schema.json', map_uses: 'local_stories', totals: { local_stories_distinct: distinct.size, articles_total: articles.length, articles_placed: placed }, unresolved, places, derived: { by: BY, from: ['data/by-place/', 'content/articles/', 'data/places/'] } }
++}
++
+ // What rests only on websummit.com (Dinis, 11 Nov 2026 ~18:50; board/passes/2026-11-11-only-websummit-sourced-comes-off.md):
+ // every fact, edge, flow, product, listing and entity whose sources are all on Web Summit's hosts. Refs and ids only,
+ // never the facts themselves. An entity is "left with nothing" when none of its items has another public source.
+diff --git a/newsroom/tests/story-counts.test.mjs b/newsroom/tests/story-counts.test.mjs
+new file mode 100644
+index 000000000..4a3ae2f17
+--- /dev/null
++++ b/newsroom/tests/story-counts.test.mjs
+@@ -0,0 +1,38 @@
++import test from 'node:test'
++import assert from 'node:assert/strict'
++import { storyCounts } from '../build/lib/derive.mjs'
++
++const registry = {
++    index: { faro: 'faro', loule: 'loule', algarve: 'algarve', portugal: 'portugal', lisboa: 'lisbon', lisbon: 'lisbon' },
++    places: [
++        { id: 'portugal', name: 'Portugal', kind: 'country', parent: null, at: null },
++        { id: 'algarve', name: 'Algarve', kind: 'region', parent: 'portugal', at: [-8, 37.2] },
++        { id: 'faro', name: 'Faro', kind: 'municipality', parent: 'algarve', at: [-7.9, 37] },
++        { id: 'loule', name: 'Loulé', kind: 'municipality', parent: 'algarve', at: [-8, 37.1] },
++        { id: 'lisbon', name: 'Lisbon', kind: 'city', parent: 'portugal', at: [-9.1, 38.7] },
++    ],
++}
++const news = [
++    { id: 'faro', news: [{ key: 'u1', date: '2026-11-01' }, { key: 'u2', date: '2026-11-01' }] },
++    { id: 'loule', news: [{ key: 'u2', date: '2026-11-02' }, { key: 'u3', date: '2026-11-03' }] },
++    { id: 'lisboa', news: [{ key: 'u9', date: '2026-11-03' }] },
++]
++const art = (slug, fm) => ({ path: `content/articles/${slug}.md`, fm })
++
++test('local_stories is each place\'s own list; a story shared by two places is counted once above them', () => {
++    const c = storyCounts(registry, news, [])
++    assert.equal(c.places.faro.local_stories, 2); assert.equal(c.places.loule.local_stories, 2)
++    assert.equal(c.places.algarve.local_stories, 0); assert.equal(c.places.algarve.rolled_up.local_stories, 3)
++    assert.equal(c.places.portugal.rolled_up.local_stories, 4); assert.equal(c.totals.local_stories_distinct, 4)
++    assert.deepEqual(c.places.faro.local_by_date, { '2026-11-01': 2 })
++})
++test('an alias resolves to its place; an unknown place file is listed, not dropped silently', () => {
++    const c = storyCounts(registry, [...news, { id: 'nowhere', news: [{ key: 'x', date: '' }] }], [])
++    assert.equal(c.places.lisbon.local_stories, 1); assert.deepEqual(c.unresolved.by_place_files, ['nowhere'])
++})
++test('articles are placed by town, else region; the rest are counted as not placed', () => {
++    const c = storyCounts(registry, news, [art('a', { town: 'loule', region: 'algarve' }), art('b', { region: 'algarve' }), art('c', {}), art('d', { town: 'atlantis' })])
++    assert.equal(c.places.loule.articles, 1); assert.equal(c.places.algarve.articles, 1); assert.equal(c.places.algarve.rolled_up.articles, 2)
++    assert.deepEqual(c.totals, { local_stories_distinct: 4, articles_total: 4, articles_placed: 2 }); assert.deepEqual(c.unresolved.articles, ['d: atlantis'])
++})
++test('a place with no story and no tagged article is left out', () => assert.equal(storyCounts(registry, [], []).places.faro, undefined))

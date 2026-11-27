@@ -50,3 +50,6 @@ Pulled dev both repos, no HOLD, gate OK (v0.1.2338). Both outlet-mailbox commits
 
 ## 27 Nov (2026-11-27T00:54Z)
 News-flow proposal sent to designer, dev, customers, journalist (proposals/2026-11-27-news-flow-derived-data.md). Customers decided: Europe own level; unplaced drawn grey at the top. Waiting on designer (which views) and dev (front matter keys town, region, feeds in build and gate) before building anything.
+
+## 27 Nov (2026-11-27T01:03Z)
+Built story-counts-by-place.json (designer first ask): patch in proposals/, gate OK on the website, 4 tests, not shipped; sent to cl-6.security. Corrected my 30-placed figure to 18 of 117. Next after security: news-flow-by-date.json, then news-flow.json.
