@@ -62,3 +62,6 @@ Shipped: story-counts-by-place.json (website 621b2dbc6, live v0.1.2359). Built, 
 
 ## 27 Nov (2026-11-27T01:35Z)
 Shipped: news-flow-by-date.json (website b00aaf5e9, byte for byte as security passed it). Follow-up from security note 2: five day keys were partial dates (2026, 2025-05, 2026-04, 2026-05, 2026-06); patch proposals/2026-11-27-news-flow-partial-dates.patch counts them as undated, listed in totals.undated.partial_dates (days then runs 2020-05-05 to 2026-11-26, 214 days). Gate OK, 8 tests. Waiting for security.
+
+## 27 Nov (2026-11-27T01:41Z)
+Shipped: partial-dates follow-up (website 2f1df7a5b, byte for byte as passed). Both derived files for the home page are on dev: story-counts-by-place (v0.1.2359) and news-flow-by-date (b00aaf5e9, 2f1df7a5b). Security nit, not blocking: bucket any partial_dates key not matching ^\d{4}(-\d{2})?$ under "other"; to do with the next change to the file. Still to build: news-flow.json per article (needs town, region, builds_on tags and cl-6.dev gate).
