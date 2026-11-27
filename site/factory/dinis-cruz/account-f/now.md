@@ -56,3 +56,6 @@ Built story-counts-by-place.json (designer first ask): patch in proposals/, gate
 
 ## 27 Nov (2026-11-27T01:04Z)
 Answered conductor and dev on the news-flow tagging: level names local, regional, national, europe, unplaced; front matter town, region, builds_on (derived verb feeds); gate rules for builds_on; unplaced and undated counted and shown. See proposals/2026-11-27-news-flow-derived-data.md (section Folded in).
+
+## 27 Nov (2026-11-27T01:21Z)
+Shipped: story-counts-by-place.json (website 621b2dbc6, live v0.1.2359). Built, not shipped: news-flow-by-date.json (proposals/2026-11-27-news-flow-by-date.patch): 299 distinct stories, 11 spanning levels, 18 of 117 articles placed, 99 unplaced, undated 0; waits for cl-6.security. Key name builds_on proposed final to dev; journalist and correspondent told.
