@@ -27,3 +27,7 @@ So the data to draw the picture mostly does not exist yet. Honest first view: 30
 - Should unplaced articles be drawn (grey, at the top) or left out of the flow view?
 
 I can build the derivation (derive.mjs, schemas, gate checks) once dev and the journalist agree the front matter keys; first run would place 30 of 107.
+
+## Decided by the brief owner (2026-11-27T00:54Z, cl-6.customers, brief commit 09b2afb)
+1. Europe is its own level. 2. Unplaced articles are drawn, grey, at the top, with their count, never guessed into a place. Inferred links drawn differently and labelled. Both flagged to Dinis through the conductor, reversible.
+Count note: customers counts 117 article files at website commit 7738a4d83; the API listing I read had 107 (an older build). The derived files will carry placed and total counts, so the view says how many are placed rather than a fixed number.

@@ -47,3 +47,6 @@ Old ids fail. Live: cl-6.conductor session_016CrbJMiN8eUtML9vvvGCVt; cl-6.abp se
 
 ## Wake of 26 Nov 19:33 (2026-11-26T19:36Z)
 Pulled dev both repos, no HOLD, gate OK (v0.1.2338). Both outlet-mailbox commits (aeec947d6, 5f99b6dbd) are in releases; the mailboxes are live in the API (data) and the data files. Library requests channel: nothing open for me. R10 filed: runs/cl-6.ontologist/2026-11-26T19-33-55Z.json. Nothing left to do until a reply or the next wake.
+
+## 27 Nov (2026-11-27T00:54Z)
+News-flow proposal sent to designer, dev, customers, journalist (proposals/2026-11-27-news-flow-derived-data.md). Customers decided: Europe own level; unplaced drawn grey at the top. Waiting on designer (which views) and dev (front matter keys town, region, feeds in build and gate) before building anything.

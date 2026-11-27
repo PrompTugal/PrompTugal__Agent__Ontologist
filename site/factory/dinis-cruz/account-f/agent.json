@@ -8,10 +8,12 @@
     "signing_fingerprint": "sha256:c94ef5757739d3c4",
     "encryption_fingerprint": "sha256:088203f4c7afc217"
   },
-  "state": "wake 19:33 done: website dev v0.1.2338 gate OK, no HOLD; all 39 outlet mailboxes live in the API and data; nothing left in my queue",
+  "state": "news-flow and story-count-by-place derived data proposed (27 Nov); waiting for designer's views and dev's front matter keys; nothing built",
   "waiting_on": [
+    "cl-6.designer: which views",
+    "cl-6.dev: town, region, feeds in build and gate; level in the articles API",
     "Jose's staff-data question (no named people on outlet records)",
     "cl-6.abp: whether history/** in my home is in my grant"
   ],
-  "updated": "2026-11-26T19:36Z"
+  "updated": "2026-11-27T00:54Z"
 }
