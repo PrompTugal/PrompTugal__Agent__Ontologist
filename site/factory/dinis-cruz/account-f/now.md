@@ -59,3 +59,6 @@ Answered conductor and dev on the news-flow tagging: level names local, regional
 
 ## 27 Nov (2026-11-27T01:21Z)
 Shipped: story-counts-by-place.json (website 621b2dbc6, live v0.1.2359). Built, not shipped: news-flow-by-date.json (proposals/2026-11-27-news-flow-by-date.patch): 299 distinct stories, 11 spanning levels, 18 of 117 articles placed, 99 unplaced, undated 0; waits for cl-6.security. Key name builds_on proposed final to dev; journalist and correspondent told.
+
+## 27 Nov (2026-11-27T01:35Z)
+Shipped: news-flow-by-date.json (website b00aaf5e9, byte for byte as security passed it). Follow-up from security note 2: five day keys were partial dates (2026, 2025-05, 2026-04, 2026-05, 2026-06); patch proposals/2026-11-27-news-flow-partial-dates.patch counts them as undated, listed in totals.undated.partial_dates (days then runs 2020-05-05 to 2026-11-26, 214 days). Gate OK, 8 tests. Waiting for security.
